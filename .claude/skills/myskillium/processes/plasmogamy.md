@@ -1,19 +1,8 @@
 # Plasmogamy
 
-## Biological Definition
-
-**Plasmogamy** is the first stage of sexual reproduction in fungi, where the **cytoplasm of two parent cells fuses together**. This brings genetic material from both parents into a single cell, though nuclear fusion (karyogamy) occurs later. The process involves:
-
-1. Two compatible hyphae make contact
-2. Cell walls dissolve at the contact point
-3. Cytoplasm merges, creating a cell with nuclei from both parents
-4. The resulting organism carries genetic contributions from both sources
-
-This is distinct from asexual reproduction (fragmentation, conidiation) because it combines traits from multiple parents rather than cloning a single parent.
-
 ## Skill Analogy
 
-In the myskillium context, plasmogamy refers to **fusing two or more skills into a single hybrid skill**. Just as fungal plasmogamy combines genetic material from multiple parents, skill plasmogamy combines functionality, patterns, and approaches from multiple source skills.
+In the myskillium context, plasmogamy refers to **fusing two or more skills into a single hybrid skill**. Just as fungal plasmogamy combines genetic material from two parents, skill plasmogamy combines functionality, patterns, and approaches from two source skills into a single new hybrid skill.
 
 Key parallels:
 - Two (or more) parent skills contribute to the hybrid

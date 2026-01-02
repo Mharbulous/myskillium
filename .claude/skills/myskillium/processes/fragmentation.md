@@ -1,19 +1,8 @@
 # Fragmentation
 
-## Biological Definition
-
-**Fragmentation** is a form of asexual reproduction in fungi where a portion of the mycelium **breaks off** from the parent organism and **grows independently** into a new individual. Unlike spore-based reproduction, fragmentation involves:
-
-1. Physical separation of a viable piece from the parent
-2. The fragment retains full capability to grow
-3. The new organism is genetically identical to the parent
-4. Adaptation to the new environment occurs post-separation
-
-This is common in fungi that spread through soil or substrate - pieces of the hyphal network break off and establish new colonies.
-
 ## Skill Analogy
 
-In the myskillium context, fragmentation refers to **extracting a skill from one repository to grow in another**. The skill is a "fragment" of the source repo's functionality that becomes independent in its new home.
+In the myskillium context, fragmentation refers to **extracting a skill from one repository to another**. The skill is a "fragment" of the source repo's functionality that becomes independent in its new home.
 
 Key parallels:
 - The skill (fragment) is viable on its own
@@ -23,9 +12,9 @@ Key parallels:
 
 ## Purpose
 
-Migrate a skill from a source repository to Myskillium (or another destination) while:
+Migrate a skill from a source repository to Myskillium while:
 1. Cleaning up project-specific references
-2. Documenting provenance in pedigree
+2. Documenting skill pedigree
 3. Preserving the skill's core functionality
 
 ## Process
