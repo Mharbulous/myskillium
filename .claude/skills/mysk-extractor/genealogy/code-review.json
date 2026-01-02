@@ -1,0 +1,29 @@
+{
+  "name": "code-reviewing",
+  "description": "Use when completing implementation, before escalating to human review, or when human checkpoint is reached - performs AI-assisted code review covering security, AI-specific issues, logic errors, and architecture to ensure humans see fresh analysis",
+  "version": "1.0.0",
+  "source": {
+    "repository": "StoryTree",
+    "path": "distributables/claude/skills/code-review/"
+  },
+  "migration": {
+    "date": "2026-01-02",
+    "destinationPath": ".claude/skills/code-review/",
+    "changes": [
+      "Replaced 'story context' with 'task context'",
+      "Replaced 'Story: [ID]' with 'Task: [ID]' in report template",
+      "Renamed 'Phase 5: Attach to Story' to 'Phase 5: Save Review'",
+      "Replaced '{story_id}' with '{task_id}' in artifact path",
+      "Replaced '--story-id' with '--task-id' in invocation",
+      "Removed '(SyncoPaid)' from Python projects comment",
+      "Generalized 'Recommended Stack for SyncoPaid' to 'Recommended Stack (Example)' in tool-capabilities.md"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "references/best-practices-research.md",
+    "references/common-ai-mistakes.md",
+    "references/review-checklist.md",
+    "references/tool-capabilities.md"
+  ]
+}

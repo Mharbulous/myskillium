@@ -1,0 +1,15 @@
+{
+  "name": "{{skill.name}}",
+  "description": "{{skill.description}}",
+  "version": "{{skill.version | default: '1.0.0'}}",
+  "source": {
+    "repository": "{{migration.sourceRepo}}",
+    "path": "{{migration.sourcePath}}{{skill.folder}}/"
+  },
+  "migration": {
+    "date": "{{migration.date}}",
+    "destinationPath": "{{migration.destinationPath}}{{skill.folder}}/",
+    "changes": []
+  },
+  "files": []
+}

@@ -1,0 +1,19 @@
+{
+  "name": "streamline",
+  "description": "Identifies files over 300 lines and decomposes them into smaller modules while preserving functionality exactly. Use when user says 'streamline', 'decompose files', 'refactor large files', or wants to break down oversized source files.",
+  "version": "1.0.0",
+  "source": {
+    "repository": "StoryTree",
+    "path": "distributables/claude/skills/streamline/"
+  },
+  "migration": {
+    "date": "2026-01-02",
+    "destinationPath": ".claude/skills/streamline/",
+    "changes": [
+      "Replaced 'src/syncopaid/tray.py' with 'src/app/tray.py' in exception example"
+    ]
+  },
+  "files": [
+    "SKILL.md"
+  ]
+}

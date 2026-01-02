@@ -1,0 +1,42 @@
+{
+  "name": "user-manual-generator",
+  "description": "Generate comprehensive end-user documentation from application codebases",
+  "version": "2.0.0",
+  "source": {
+    "repository": "StoryTree",
+    "path": "distributables/claude/skills/user-manual-generator/"
+  },
+  "migration": {
+    "date": "2026-01-02",
+    "destinationPath": ".claude/skills/user-manual-generator/",
+    "changes": []
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "phases/01-discovery.md",
+    "phases/02-feature-extraction.md",
+    "phases/03-structure-planning.md",
+    "phases/04-content-generation.md",
+    "phases/05-static-site-setup.md",
+    "phases/06-quality-assurance.md",
+    "phases/07-handoff.md",
+    "templates/installation.md",
+    "templates/quick-start.md",
+    "templates/how-to-guide.md",
+    "templates/configuration-reference.md",
+    "templates/api-reference.md",
+    "templates/cli-reference.md",
+    "templates/troubleshooting.md",
+    "ssg/mkdocs.md",
+    "ssg/docusaurus.md",
+    "ssg/vitepress.md",
+    "ssg/plain-markdown.md",
+    "reference/tech-patterns.md",
+    "reference/advanced-features.md",
+    "reference/best-practices.md",
+    "reference/skill-troubleshooting.md",
+    "examples/web-app-example.md",
+    "examples/cli-tool-example.md"
+  ]
+}

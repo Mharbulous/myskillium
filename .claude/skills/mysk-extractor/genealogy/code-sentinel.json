@@ -1,0 +1,43 @@
+{
+  "name": "code-sentinel",
+  "description": "Use when code pattern tests fail - fixes recurring anti-patterns with documented root causes and verification",
+  "version": "1.0.0",
+  "source": {
+    "repository": "StoryTree",
+    "path": "distributables/claude/skills/code-sentinel/"
+  },
+  "migration": {
+    "date": "2026-01-02",
+    "destinationPath": ".claude/skills/code-sentinel/",
+    "changes": [
+      "Generalized 'tests/test_code_patterns.py' to 'code pattern tests' in description",
+      "Changed specific test file reference to 'your project's code pattern tests'",
+      "Replaced 'syncopaid' with 'myapp' in all anti-pattern example code",
+      "Generalized 'In the SyncoPaid case' to 'In one case' in historical context"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "anti-patterns/application-runtime/duplicate-module-level-constants.md",
+    "anti-patterns/application-runtime/fixed-window-geometry.md",
+    "anti-patterns/application-runtime/pil-ico-save-invisible.md",
+    "anti-patterns/application-runtime/pil-imagegrab-multimonitor.md",
+    "anti-patterns/application-runtime/silent-optional-import-failure.md",
+    "anti-patterns/application-runtime/sort-without-tiebreaker.md",
+    "anti-patterns/build-packaging/gitignored-file-still-tracked.md",
+    "anti-patterns/build-packaging/import-path-case-mismatch.md",
+    "anti-patterns/build-packaging/pyinstaller-missing-hidden-imports.md",
+    "anti-patterns/build-packaging/sibling-absolute-import-bundling.md",
+    "anti-patterns/build-packaging/version-hash-before-commit.md",
+    "anti-patterns/build-packaging/windows-backslash-in-spec.md",
+    "anti-patterns/ci-workflow/gh-workflow-run-permissions.md",
+    "anti-patterns/ci-workflow/git-pull-without-autostash.md",
+    "anti-patterns/ci-workflow/grep-exit-code-echo-fallback.md",
+    "anti-patterns/ci-workflow/windows-venv-path-on-linux.md",
+    "anti-patterns/ci-workflow/yaml-heredoc-indentation.md",
+    "anti-patterns/pyinstaller/hidden-imports.md",
+    "anti-patterns/pyinstaller/sibling-relative-imports.md",
+    "anti-patterns/fixed-window-geometry.md",
+    "anti-patterns/non-deterministic-sorting.md"
+  ]
+}

@@ -1,4 +1,4 @@
-This is an experiment in chaos coding:  non-deterministic genetic programming, inspired by the theories of Edward Lorenz and Stephen Wolfram.
+This is an experiment in chaos coding:  non-deterministic genetic programming, inspired by the theories of Edward Lorenz, Stephen Wolfram, Andrej Karpathy and dedicated to John Horton Conway.
 
 # Myskillium
 

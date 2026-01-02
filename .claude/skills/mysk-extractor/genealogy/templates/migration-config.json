@@ -1,0 +1,62 @@
+{
+  "$schema": "./migration-config-schema.json",
+  "migration": {
+    "name": "StoryTree to Myskillium",
+    "date": "2026-01-02",
+    "sourceRepo": "StoryTree",
+    "sourcePath": "distributables/claude/skills/",
+    "destinationPath": ".claude/skills/",
+    "genealogyPath": ".claude/skills/myskillium/genealogy/"
+  },
+  "skills": [
+    "code-review",
+    "code-sentinel",
+    "skill-refinement",
+    "streamline",
+    "user-manual-generator"
+  ],
+  "cleanup": {
+    "replacements": [
+      {
+        "pattern": "SyncoPaid",
+        "replacement": "myapp",
+        "context": "Project name in examples",
+        "caseSensitive": false
+      },
+      {
+        "pattern": "syncopaid",
+        "replacement": "myapp",
+        "context": "Package/module name in code",
+        "caseSensitive": true
+      },
+      {
+        "pattern": "story",
+        "replacement": "task",
+        "context": "Domain terminology",
+        "caseSensitive": false,
+        "wholeWord": true,
+        "exceptions": ["history", "conversation history"]
+      },
+      {
+        "pattern": "story_id",
+        "replacement": "task_id",
+        "context": "Variable names",
+        "caseSensitive": true
+      },
+      {
+        "pattern": "tests/test_code_patterns.py",
+        "replacement": "your project's code pattern tests",
+        "context": "Specific test file reference",
+        "caseSensitive": true
+      }
+    ],
+    "ignorePatterns": [
+      "submodule",
+      "history"
+    ]
+  },
+  "validation": {
+    "scanPatterns": ["storytree", "syncopaid", "story_id"],
+    "allowedFalsePositives": ["history", "submodule.new_file"]
+  }
+}

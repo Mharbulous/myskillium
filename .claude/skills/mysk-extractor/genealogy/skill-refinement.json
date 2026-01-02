@@ -1,0 +1,22 @@
+{
+  "name": "skill-refinement",
+  "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
+  "version": "1.0.0",
+  "source": {
+    "repository": "StoryTree",
+    "path": "distributables/claude/skills/skill-refinement/"
+  },
+  "migration": {
+    "date": "2026-01-02",
+    "destinationPath": ".claude/skills/skill-refinement/",
+    "changes": []
+  },
+  "files": [
+    "SKILL.md",
+    "references/output-patterns.md",
+    "references/workflows.md",
+    "scripts/init_skill.py",
+    "scripts/package_skill.py",
+    "scripts/validate_skill.py"
+  ]
+}
