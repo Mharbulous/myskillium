@@ -100,6 +100,37 @@ SETTINGS_FILE = ".claude/settings.json"
 # ============================================================================
 
 EMBEDDED_DOCS = {
+    "README.md": """\
+This is an experiment in chaos coding: non-deterministic genetic programming, inspired by the theories of Edward Lorenz, Stephen Wolfram, Andrej Karpathy and dedicated to John Horton Conway.
+
+# Myskillium
+
+A symbiotic artificial intelligence organism dependent on Claude Code custom skills and modeled on mycelium networks.
+
+## Install
+
+1. Copy `conidium.py` to your project
+
+2. Germinate:
+   ```bash
+   python conidium.py --germinate
+   ```
+
+3. Run Claude Code with hooks allowed
+
+## Uninstall
+
+1. Delete .claude/skills/myskillium/scripts/conidium.py
+2. Remove its hook entry from .claude/settings.json
+3. Delete .claude/skills/myskillium folder
+
+## How it works
+
+The first time you use Claude Code in your repo after installing Myskillium, the spore will bootstrap itself into your repo as .claude/skills/myskillium.
+
+It stays silent most of the time, only waking to notify you when upstream updates are available.
+""",
+
     "processes/conidiation.md": """\
 # Conidiation
 
@@ -469,14 +500,17 @@ Ensure consistency of core myskillium processes across all repositories:
 
 ### Embedded Content
 
-The script embeds all five essential myskillium files:
+The script embeds all essential myskillium files:
 
 | File | Purpose |
 |------|---------|
+| `README.md` | Installation and overview |
+| `SKILL.md` | Skill definition and process index |
 | `processes/conidiation.md` | Spore creation process |
 | `processes/fragmentation.md` | Skill extraction process |
 | `processes/plasmogamy.md` | Skill fusion process |
 | `processes/homeostasis.md` | This file - consistency maintenance |
+| `processes/apoptosis.md` | Controlled removal process |
 | `processes/pedigree.json` | Template for genealogy records |
 
 ### Relationship to myskillium-spore.py
@@ -484,7 +518,7 @@ The script embeds all five essential myskillium files:
 | Aspect | myskillium-spore.py | conidium.py |
 |--------|---------------------|-------------|
 | **Primary role** | Bootstrap planning docs | Bootstrap + maintain myskillium skill |
-| **Embedded content** | 7 planning docs (01-07) | 5 process definitions |
+| **Embedded content** | 7 planning docs (01-07) | 8 embedded files |
 | **Target directory** | `.claude/skills/bootstrap/` | `.claude/skills/myskillium/` |
 | **Germination** | Writes docs on first run | `--germinate` flag creates full skill |
 | **Hook behavior** | Checks for updates | Restores drifted processes |
@@ -693,6 +727,170 @@ Homeostasis protects itself (`homeostasis.md`). This creates a bootstrapping con
 - [ ] `version.yml` tracks last check timestamp and hash
 """,
 
+    "processes/apoptosis.md": """\
+# Apoptosis
+
+## Definition
+
+In the myskillium context, apoptosis refers to **the controlled, orderly removal of myskillium from a repository**. Just as biological apoptosis is programmed cell death that cleanly removes cells without damaging surrounding tissue, skill apoptosis cleanly removes myskillium without corrupting the host repository.
+
+Key parallels:
+- Programmed = deliberate user decision, not accidental deletion
+- Orderly = follows specific sequence to avoid orphaned artifacts
+- Clean removal = no residual hooks, settings, or broken references
+- Non-destructive = host repository continues functioning normally
+
+## Purpose
+
+Provide a safe, complete method to remove myskillium from a repository:
+
+1. **Disable monitoring** - Remove the SessionStart hook first to prevent resurrection
+2. **Remove artifacts** - Delete all myskillium files and directories
+3. **Preserve integrity** - Leave no orphaned references in settings
+4. **Document removal** - Optional: record removal in git history
+
+## Process
+
+### Prerequisites
+
+- Repository has myskillium installed (`.claude/skills/myskillium/` exists)
+- User has write access to `.claude/` directory
+- User understands removal is permanent (no homeostasis to restore)
+
+### Phase 1: Disable Hook
+
+**Critical**: The hook must be removed FIRST. If the directory is deleted while the hook remains, Claude Code sessions will fail with missing script errors.
+
+Edit `.claude/settings.json` and remove the myskillium SessionStart hook entry:
+
+```json
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/skills/myskillium/scripts/conidium.py"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+If this is the only SessionStart hook, the entire `SessionStart` array can be removed.
+
+### Phase 2: Remove Script
+
+Delete the conidium script:
+
+```bash
+rm .claude/skills/myskillium/scripts/conidium.py
+```
+
+Or on Windows:
+
+```powershell
+Remove-Item .claude\\skills\\myskillium\\scripts\\conidium.py
+```
+
+This prevents any possibility of accidental re-execution.
+
+### Phase 3: Remove Directory
+
+Delete the entire myskillium skill directory:
+
+```bash
+rm -rf .claude/skills/myskillium/
+```
+
+Or on Windows:
+
+```powershell
+Remove-Item -Recurse -Force .claude\\skills\\myskillium\\
+```
+
+This removes:
+- `SKILL.md` - The skill definition
+- `README.md` - Documentation
+- `version.yml` - Version tracking
+- `processes/` - All process documentation
+- `scripts/` - The scripts directory (now empty)
+
+### Phase 4: Commit (Optional)
+
+If tracking the removal in git history:
+
+```bash
+git add .claude/
+git commit -m "chore: remove myskillium skill"
+```
+
+## Apoptosis vs Necrosis
+
+| Aspect | Apoptosis (Controlled) | Necrosis (Uncontrolled) |
+|--------|------------------------|------------------------|
+| **Hook removal** | First step | Forgotten |
+| **Sequence** | Hook → Script → Directory | Random deletion |
+| **Result** | Clean removal | Orphaned hooks, errors |
+| **Recovery** | Re-germinate if needed | Debug broken settings |
+
+**Warning**: Simply deleting `.claude/skills/myskillium/` without removing the hook causes "necrosis" - the SessionStart hook will attempt to run a non-existent script, producing errors on every Claude Code session.
+
+## Resurrection
+
+Apoptosis is reversible. To restore myskillium after removal:
+
+1. Obtain a fresh `conidium.py` from upstream or another repository
+2. Place it anywhere in your repository
+3. Run `python conidium.py --germinate`
+
+The germination process will recreate the full skill structure and reinstall the hook.
+
+## Relationship to Other Processes
+
+| Process | Apoptosis Relationship |
+|---------|----------------------|
+| **Conidiation** | Apoptosis undoes germination |
+| **Homeostasis** | Must be disabled (hook removal) before apoptosis succeeds |
+| **Fragmentation** | Can extract skills before apoptosis if preservation needed |
+| **Plasmogamy** | Can fuse skills before apoptosis if combining with another |
+
+Apoptosis is the **inverse of germination**. Where germination creates and installs, apoptosis removes and uninstalls. The hook removal step is critical because homeostasis would otherwise attempt to restore removed files.
+
+## Quick Reference
+
+```bash
+# Complete apoptosis sequence (Unix/Mac)
+# 1. Edit .claude/settings.json - remove the SessionStart hook entry
+# 2. Then run:
+rm .claude/skills/myskillium/scripts/conidium.py
+rm -rf .claude/skills/myskillium/
+git add .claude/ && git commit -m "chore: remove myskillium"
+```
+
+```powershell
+# Complete apoptosis sequence (Windows PowerShell)
+# 1. Edit .claude/settings.json - remove the SessionStart hook entry
+# 2. Then run:
+Remove-Item .claude\\skills\\myskillium\\scripts\\conidium.py
+Remove-Item -Recurse -Force .claude\\skills\\myskillium\\
+git add .claude/ ; git commit -m "chore: remove myskillium"
+```
+
+## Checklist
+
+- [ ] User confirms intent to remove myskillium
+- [ ] SessionStart hook entry removed from `.claude/settings.json`
+- [ ] `conidium.py` script deleted
+- [ ] `.claude/skills/myskillium/` directory deleted
+- [ ] No orphaned references in settings.json
+- [ ] Changes committed to git (optional)
+- [ ] User informed how to re-germinate if needed
+""",
+
     "processes/pedigree.json": """\
 {
   "name": "{{skill.name}}",
@@ -725,13 +923,15 @@ Migrate and crossbreed skills between repositories while documenting provenance 
 
 ## Processes
 
-This skill supports three operations, named after mycological reproductive processes:
+This skill defines five processes, named after mycological and cellular biology:
 
 | Process | File | Description |
 |---------|------|-------------|
 | **Conidiation** | `processes/conidiation.md` | Spore production - create/update the portable extraction tool |
 | **Fragmentation** | `processes/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
 | **Plasmogamy** | `processes/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
+| **Homeostasis** | `processes/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
+| **Apoptosis** | `processes/apoptosis.md` | Programmed death - controlled removal/uninstallation |
 
 ## Pedigree Schema
 

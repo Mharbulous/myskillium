@@ -9,13 +9,15 @@ Migrate and crossbreed skills between repositories while documenting provenance 
 
 ## Processes
 
-This skill supports three operations, named after mycological reproductive processes:
+This skill defines five processes, named after mycological and cellular biology:
 
 | Process | File | Description |
 |---------|------|-------------|
 | **Conidiation** | `processes/conidiation.md` | Spore production - create/update the portable extraction tool |
 | **Fragmentation** | `processes/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
 | **Plasmogamy** | `processes/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
+| **Homeostasis** | `processes/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
+| **Apoptosis** | `processes/apoptosis.md` | Programmed death - controlled removal/uninstallation |
 
 ## Pedigree Schema
 
