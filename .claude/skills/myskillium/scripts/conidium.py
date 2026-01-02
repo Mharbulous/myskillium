@@ -90,7 +90,7 @@ REMOTE_VERSION_URL = f"https://raw.githubusercontent.com/{_SOURCE_OWNER}/{_SOURC
 
 # Target directory structure
 MYSKILLIUM_DIR = ".claude/skills/myskillium"
-PROCESSES_DIR = ".claude/skills/myskillium/processes"
+CORE_DIR = ".claude/skills/myskillium/core"
 SCRIPTS_DIR = ".claude/skills/myskillium/scripts"
 VERSION_FILE = ".claude/skills/myskillium/version.yml"
 SETTINGS_FILE = ".claude/settings.json"
@@ -101,37 +101,33 @@ SETTINGS_FILE = ".claude/settings.json"
 
 EMBEDDED_DOCS = {
     "README.md": """\
-This is an experiment in chaos coding: non-deterministic genetic programming, inspired by the theories of Edward Lorenz, Stephen Wolfram, Andrej Karpathy and dedicated to John Horton Conway.
-
 # Myskillium
 
-A symbiotic artificial intelligence organism dependent on Claude Code custom skills and modeled on mycelium networks.
+Myskillium is a meta-skill within the Claude Code ecosystem that finds and improves skills using processes modelled after mycelium.  Through a process called conidiation it creates spores (conidium) that can be copied to other repos where they grow independently into hyphae (threads) and eventualy connect to create decentralized network of symbiotic cloned skills.
 
-## Install
+Examples of use:
 
-1. Copy `conidium.py` to your project
+   "Claude, find me a skill that can ....X....?"
+   "Claude, find a better version of this skill:  ...X.."
+   "Claude, create a hybrid skill that combines the best elements of these two skills:  ...Y and Z..."
 
-2. Germinate:
+This experiment in non-deterministic evolutionary programming is dedicated to John Horton Conway, Edward Lorenz, Stephen Wolfram, and Andrej Karpathy.
+
+1. Install
+
    ```bash
    python conidium.py --germinate
    ```
 
-3. Run Claude Code with hooks allowed
+2. Uninstall
 
-## Uninstall
+   ```bash
+   python conidium.py --apoptose
+   ```
 
-1. Delete .claude/skills/myskillium/scripts/conidium.py
-2. Remove its hook entry from .claude/settings.json
-3. Delete .claude/skills/myskillium folder
-
-## How it works
-
-The first time you use Claude Code in your repo after installing Myskillium, the spore will bootstrap itself into your repo as .claude/skills/myskillium.
-
-It stays silent most of the time, only waking to notify you when upstream updates are available.
 """,
 
-    "processes/conidiation.md": """\
+    "core/conidiation.md": """\
 # Conidiation
 
 ## Skill Analogy
@@ -169,7 +165,7 @@ myskillium-spore.py  # Portable extraction tool
 The spore is the **mechanism**; fragmentation and plasmogamy are the **operations** that use it.
 """,
 
-    "processes/fragmentation.md": """\
+    "core/fragmentation.md": """\
 # Fragmentation
 
 ## Skill Analogy
@@ -292,7 +288,7 @@ This ensures Claude's non-determinism is the only uncontrolled variable.
 - [ ] Process used isolated subagent (experimental control)
 """,
 
-    "processes/plasmogamy.md": """\
+    "core/plasmogamy.md": """\
 # Plasmogamy
 
 ## Skill Analogy
@@ -469,7 +465,7 @@ This transforms skill management into **empirical AI research**.
 - [ ] destCommitID recorded in pedigree
 """,
 
-    "processes/homeostasis.md": """\
+    "core/homeostasis.md": """\
 # Homeostasis
 
 ## Definition
@@ -506,13 +502,13 @@ The script embeds all essential myskillium files:
 |------|---------|
 | `README.md` | Installation and overview |
 | `SKILL.md` | Skill definition and process index |
-| `processes/conidiation.md` | Spore creation process |
-| `processes/fragmentation.md` | Skill extraction process |
-| `processes/plasmogamy.md` | Skill fusion process |
-| `processes/homeostasis.md` | This file - consistency maintenance |
-| `processes/apoptosis.md` | Controlled removal process |
-| `processes/tropism.md` | Skill discovery process |
-| `processes/pedigree.json` | Template for genealogy records |
+| `core/conidiation.md` | Spore creation process |
+| `core/fragmentation.md` | Skill extraction process |
+| `core/plasmogamy.md` | Skill fusion process |
+| `core/homeostasis.md` | This file - consistency maintenance |
+| `core/apoptosis.md` | Controlled removal process |
+| `core/tropism.md` | Skill discovery process |
+| `core/pedigree.json` | Template for genealogy records |
 
 ### Relationship to myskillium-spore.py
 
@@ -538,7 +534,7 @@ flowchart TD
     ASK_OVERWRITE -->|Yes| GERMINATE
     CHECK_EXISTS -->|No| GERMINATE[Create directory structure]
 
-    GERMINATE --> WRITE_FILES[Write all 5 embedded files<br/>to processes/]
+    GERMINATE --> WRITE_FILES[Write all 5 embedded files<br/>to core/]
     WRITE_FILES --> WRITE_SKILL[Write SKILL.md]
     WRITE_SKILL --> UPDATE_SETTINGS[Update .claude/settings.json<br/>Add SessionStart hook]
     UPDATE_SETTINGS --> WRITE_VERSION_G[Write version.yml]
@@ -608,7 +604,7 @@ The script:
    .claude/skills/myskillium/
    ├── SKILL.md
    ├── version.yml
-   ├── processes/
+   ├── core/
    │   ├── conidiation.md
    │   ├── fragmentation.md
    │   ├── homeostasis.md
@@ -728,7 +724,7 @@ Homeostasis protects itself (`homeostasis.md`). This creates a bootstrapping con
 - [ ] `version.yml` tracks last check timestamp and hash
 """,
 
-    "processes/apoptosis.md": """\
+    "core/apoptosis.md": """\
 # Apoptosis
 
 ## Definition
@@ -817,7 +813,7 @@ This removes:
 - `SKILL.md` - The skill definition
 - `README.md` - Documentation
 - `version.yml` - Version tracking
-- `processes/` - All process documentation
+- `core/` - All process documentation
 - `scripts/` - The scripts directory (now empty)
 
 ### Phase 4: Commit (Optional)
@@ -892,7 +888,7 @@ git add .claude/ ; git commit -m "chore: remove myskillium"
 - [ ] User informed how to re-germinate if needed
 """,
 
-    "processes/tropism.md": """\
+    "core/tropism.md": """\
 # Tropism
 
 ## Definition
@@ -1091,7 +1087,7 @@ This would enable myskillium to proactively suggest skill acquisitions.
 - [ ] Handoff to fragmentation process (if proceeding)
 """,
 
-    "processes/pedigree.json": """\
+    "core/pedigree.json": """\
 {
   "name": "{{skill.name}}",
   "description": "{{skill.description}}",
@@ -1104,7 +1100,7 @@ This would enable myskillium to proactively suggest skill acquisitions.
       "destURL": "https://github.com/org/repo.git",
       "destPath": ".claude/skills/skill-name",
       "destCommitID": "1234567890abcdef1234567890abcdef12345678",
-      "destOperator": ".claude\\skills\\myskillium\\SKILL.md",
+      "destOperator": ".claude/skills/myskillium/SKILL.md",
       "destModel": "claude-opus-4-5-20251101"
     }
   ]
@@ -1127,12 +1123,12 @@ This skill defines six processes, named after mycological and cellular biology:
 
 | Process | File | Description |
 |---------|------|-------------|
-| **Conidiation** | `processes/conidiation.md` | Spore production - create/update the portable extraction tool |
-| **Fragmentation** | `processes/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
-| **Plasmogamy** | `processes/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
-| **Homeostasis** | `processes/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
-| **Apoptosis** | `processes/apoptosis.md` | Programmed death - controlled removal/uninstallation |
-| **Tropism** | `processes/tropism.md` | Sensory process - discover and locate skills from external sources |
+| **Conidiation** | `core/conidiation.md` | Spore production - create/update the portable extraction tool |
+| **Fragmentation** | `core/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
+| **Plasmogamy** | `core/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
+| **Homeostasis** | `core/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
+| **Apoptosis** | `core/apoptosis.md` | Programmed death - controlled removal/uninstallation |
+| **Tropism** | `core/tropism.md` | Sensory process - discover and locate skills from external sources |
 
 ## Pedigree Schema
 
@@ -1207,7 +1203,7 @@ Both `fragmentation.md` and `plasmogamy.md` processes MUST:
 
 ## Workflow (Fragmentation)
 
-See `processes/fragmentation.md` for the full single-source extraction workflow.
+See `core/fragmentation.md` for the full single-source extraction workflow.
 
 High-level phases:
 1. **Configure** - Define source/destination and cleanup rules
@@ -1538,21 +1534,21 @@ def germinate(project_root: Path, force: bool = False) -> None:
             sys.exit(1)
 
     # Create directory structure
-    processes_dir = project_root / PROCESSES_DIR
+    core_dir = project_root / CORE_DIR
     scripts_dir = project_root / SCRIPTS_DIR
-    processes_dir.mkdir(parents=True, exist_ok=True)
+    core_dir.mkdir(parents=True, exist_ok=True)
     scripts_dir.mkdir(parents=True, exist_ok=True)
 
     # Write embedded files EXCEPT pedigree.json (which is generated dynamically)
     for name, content in EMBEDDED_DOCS.items():
-        if name == "processes/pedigree.json":
+        if name == "core/pedigree.json":
             continue  # Skip - will be generated dynamically
         filepath = project_root / MYSKILLIUM_DIR / name
         filepath.parent.mkdir(parents=True, exist_ok=True)
         filepath.write_text(content, encoding="utf-8")
 
     # Generate pedigree.json dynamically with source/destination info
-    pedigree_path = project_root / PROCESSES_DIR / "pedigree.json"
+    pedigree_path = project_root / CORE_DIR / "pedigree.json"
     pedigree_content = generate_pedigree_json(project_root)
     pedigree_path.write_text(pedigree_content, encoding="utf-8")
 
@@ -1587,7 +1583,7 @@ def germinate(project_root: Path, force: bool = False) -> None:
     print()
     print("Files created:")
     for name in sorted(EMBEDDED_DOCS.keys()):
-        if name == "processes/pedigree.json":
+        if name == "core/pedigree.json":
             print(f"  - {name} (generated with lineage)")
         else:
             print(f"  - {name}")
