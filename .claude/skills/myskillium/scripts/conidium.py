@@ -90,7 +90,7 @@ REMOTE_VERSION_URL = f"https://raw.githubusercontent.com/{_SOURCE_OWNER}/{_SOURC
 
 # Target directory structure
 MYSKILLIUM_DIR = ".claude/skills/myskillium"
-CORE_DIR = ".claude/skills/myskillium/core"
+SUBSTRATE_DIR = ".claude/skills/myskillium/substrate"
 SCRIPTS_DIR = ".claude/skills/myskillium/scripts"
 VERSION_FILE = ".claude/skills/myskillium/version.yml"
 SETTINGS_FILE = ".claude/settings.json"
@@ -127,7 +127,7 @@ This experiment in non-deterministic evolutionary programming is dedicated to Jo
 
 """,
 
-    "core/conidiation.md": """\
+    "substrate/conidiation.md": """\
 # Conidiation
 
 ## Skill Analogy
@@ -165,7 +165,7 @@ myskillium-spore.py  # Portable extraction tool
 The spore is the **mechanism**; fragmentation and plasmogamy are the **operations** that use it.
 """,
 
-    "core/fragmentation.md": """\
+    "substrate/fragmentation.md": """\
 # Fragmentation
 
 ## Skill Analogy
@@ -288,7 +288,7 @@ This ensures Claude's non-determinism is the only uncontrolled variable.
 - [ ] Process used isolated subagent (experimental control)
 """,
 
-    "core/plasmogamy.md": """\
+    "substrate/plasmogamy.md": """\
 # Plasmogamy
 
 ## Skill Analogy
@@ -465,7 +465,7 @@ This transforms skill management into **empirical AI research**.
 - [ ] destCommitID recorded in pedigree
 """,
 
-    "core/homeostasis.md": """\
+    "substrate/homeostasis.md": """\
 # Homeostasis
 
 ## Definition
@@ -502,13 +502,13 @@ The script embeds all essential myskillium files:
 |------|---------|
 | `README.md` | Installation and overview |
 | `SKILL.md` | Skill definition and process index |
-| `core/conidiation.md` | Spore creation process |
-| `core/fragmentation.md` | Skill extraction process |
-| `core/plasmogamy.md` | Skill fusion process |
-| `core/homeostasis.md` | This file - consistency maintenance |
-| `core/apoptosis.md` | Controlled removal process |
-| `core/tropism.md` | Skill discovery process |
-| `core/pedigree.json` | Template for genealogy records |
+| `substrate/conidiation.md` | Spore creation process |
+| `substrate/fragmentation.md` | Skill extraction process |
+| `substrate/plasmogamy.md` | Skill fusion process |
+| `substrate/homeostasis.md` | This file - consistency maintenance |
+| `substrate/apoptosis.md` | Controlled removal process |
+| `substrate/tropism.md` | Skill discovery process |
+| `substrate/pedigree.json` | Template for genealogy records |
 
 ### Relationship to myskillium-spore.py
 
@@ -534,7 +534,7 @@ flowchart TD
     ASK_OVERWRITE -->|Yes| GERMINATE
     CHECK_EXISTS -->|No| GERMINATE[Create directory structure]
 
-    GERMINATE --> WRITE_FILES[Write all 5 embedded files<br/>to core/]
+    GERMINATE --> WRITE_FILES[Write all embedded files<br/>to substrate/]
     WRITE_FILES --> WRITE_SKILL[Write SKILL.md]
     WRITE_SKILL --> UPDATE_SETTINGS[Update .claude/settings.json<br/>Add SessionStart hook]
     UPDATE_SETTINGS --> WRITE_VERSION_G[Write version.yml]
@@ -604,7 +604,7 @@ The script:
    .claude/skills/myskillium/
    ├── SKILL.md
    ├── version.yml
-   ├── core/
+   ├── substrate/
    │   ├── conidiation.md
    │   ├── fragmentation.md
    │   ├── homeostasis.md
@@ -724,7 +724,7 @@ Homeostasis protects itself (`homeostasis.md`). This creates a bootstrapping con
 - [ ] `version.yml` tracks last check timestamp and hash
 """,
 
-    "core/apoptosis.md": """\
+    "substrate/apoptosis.md": """\
 # Apoptosis
 
 ## Definition
@@ -813,7 +813,7 @@ This removes:
 - `SKILL.md` - The skill definition
 - `README.md` - Documentation
 - `version.yml` - Version tracking
-- `core/` - All process documentation
+- `substrate/` - All process documentation
 - `scripts/` - The scripts directory (now empty)
 
 ### Phase 4: Commit (Optional)
@@ -888,7 +888,7 @@ git add .claude/ ; git commit -m "chore: remove myskillium"
 - [ ] User informed how to re-germinate if needed
 """,
 
-    "core/tropism.md": """\
+    "substrate/tropism.md": """\
 # Tropism
 
 ## Definition
@@ -1058,10 +1058,10 @@ In future iterations, tropism could become automated:
 ```python
 # Conceptual: Automated skill discovery
 def autonomous_tropism(need: str) -> list[SkillCandidate]:
-    """
+    \"\"\"
     Periodically scan known sources for skills matching needs.
     Alert when high-fitness candidates discovered.
-    """
+    \"\"\"
     sources = load_known_sources()
     candidates = []
     for source in sources:
@@ -1087,7 +1087,7 @@ This would enable myskillium to proactively suggest skill acquisitions.
 - [ ] Handoff to fragmentation process (if proceeding)
 """,
 
-    "core/pedigree.json": """\
+    "substrate/pedigree.json": """\
 {
   "name": "{{skill.name}}",
   "description": "{{skill.description}}",
@@ -1123,12 +1123,12 @@ This skill defines six processes, named after mycological and cellular biology:
 
 | Process | File | Description |
 |---------|------|-------------|
-| **Conidiation** | `core/conidiation.md` | Spore production - create/update the portable extraction tool |
-| **Fragmentation** | `core/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
-| **Plasmogamy** | `core/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
-| **Homeostasis** | `core/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
-| **Apoptosis** | `core/apoptosis.md` | Programmed death - controlled removal/uninstallation |
-| **Tropism** | `core/tropism.md` | Sensory process - discover and locate skills from external sources |
+| **Conidiation** | `substrate/conidiation.md` | Spore production - create/update the portable extraction tool |
+| **Fragmentation** | `substrate/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
+| **Plasmogamy** | `substrate/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
+| **Homeostasis** | `substrate/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
+| **Apoptosis** | `substrate/apoptosis.md` | Programmed death - controlled removal/uninstallation |
+| **Tropism** | `substrate/tropism.md` | Sensory process - discover and locate skills from external sources |
 
 ## Pedigree Schema
 
@@ -1203,7 +1203,7 @@ Both `fragmentation.md` and `plasmogamy.md` processes MUST:
 
 ## Workflow (Fragmentation)
 
-See `core/fragmentation.md` for the full single-source extraction workflow.
+See `substrate/fragmentation.md` for the full single-source extraction workflow.
 
 High-level phases:
 1. **Configure** - Define source/destination and cleanup rules
@@ -1467,9 +1467,10 @@ def update_conidium_source_metadata(script_content: str, new_url: str, new_path:
     """
     import re
 
-    # Pattern to match the _CONIDIUM_SOURCE dictionary block
-    # Handles optional comments and trailing commas
-    pattern = r'_CONIDIUM_SOURCE = \{[^}]+\}'
+    # Pattern to match the _CONIDIUM_SOURCE dictionary block at module level only
+    # Uses ^ with MULTILINE to only match unindented (top-level) definitions
+    # This prevents matching the template inside the update function itself
+    pattern = r'^_CONIDIUM_SOURCE = \{[^}]+\}'
 
     replacement = f'''_CONIDIUM_SOURCE = {{
     "url": "{new_url}",
@@ -1477,8 +1478,8 @@ def update_conidium_source_metadata(script_content: str, new_url: str, new_path:
     "commit": "{new_commit}",
 }}'''
 
-    # Use re.DOTALL to match across newlines
-    updated = re.sub(pattern, replacement, script_content, flags=re.DOTALL)
+    # Use MULTILINE so ^ matches start of lines, and DOTALL for newlines in content
+    updated = re.sub(pattern, replacement, script_content, flags=re.MULTILINE)
 
     return updated
 
@@ -1534,21 +1535,21 @@ def germinate(project_root: Path, force: bool = False) -> None:
             sys.exit(1)
 
     # Create directory structure
-    core_dir = project_root / CORE_DIR
+    substrate_dir = project_root / SUBSTRATE_DIR
     scripts_dir = project_root / SCRIPTS_DIR
-    core_dir.mkdir(parents=True, exist_ok=True)
+    substrate_dir.mkdir(parents=True, exist_ok=True)
     scripts_dir.mkdir(parents=True, exist_ok=True)
 
     # Write embedded files EXCEPT pedigree.json (which is generated dynamically)
     for name, content in EMBEDDED_DOCS.items():
-        if name == "core/pedigree.json":
+        if name == "substrate/pedigree.json":
             continue  # Skip - will be generated dynamically
         filepath = project_root / MYSKILLIUM_DIR / name
         filepath.parent.mkdir(parents=True, exist_ok=True)
         filepath.write_text(content, encoding="utf-8")
 
     # Generate pedigree.json dynamically with source/destination info
-    pedigree_path = project_root / CORE_DIR / "pedigree.json"
+    pedigree_path = project_root / SUBSTRATE_DIR / "pedigree.json"
     pedigree_content = generate_pedigree_json(project_root)
     pedigree_path.write_text(pedigree_content, encoding="utf-8")
 
@@ -1583,7 +1584,7 @@ def germinate(project_root: Path, force: bool = False) -> None:
     print()
     print("Files created:")
     for name in sorted(EMBEDDED_DOCS.keys()):
-        if name == "core/pedigree.json":
+        if name == "substrate/pedigree.json":
             print(f"  - {name} (generated with lineage)")
         else:
             print(f"  - {name}")
