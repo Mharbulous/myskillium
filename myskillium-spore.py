@@ -213,74 +213,25 @@ Both result in the same file structure.
 
 ## Overview
 
-Steps to create the Myskillium repository from scratch.
+Remaining steps after germination to complete Myskillium setup.
 
-## Phase 1: Create Repository
+## Step 1: Create Sync Scripts
 
-1. Create new GitHub repo: `Mharbulous/Myskillium`
-2. Initialize with README.md
-3. Clone locally
+Build the sync mechanism (see `04-sync-script-spec.md`):
+- `sync-myskillium.py` - Python (cross-platform)
+- `sync-myskillium.sh` - Bash (optional)
 
-## Phase 2: Create Directory Structure
+## Step 2: Migrate Content
 
-```bash
-mkdir -p .claude/skills
-mkdir -p .claude/commands
-mkdir -p .claude/scripts
-mkdir -p .claude/data
-mkdir -p .github/workflows
-mkdir -p gui
-```
+Extract components from existing projects (see `05-scrape-plan.md`).
 
-## Phase 3: Create Core Files
+## Step 3: Enable Template
 
-1. **CLAUDE.md** - Instructions for Claude Code
-   - Overview of Myskillium
-   - How to use skills/commands
-   - How to sync updates
+On GitHub: Settings > General > Check "Template repository"
 
-2. **README.md** - User-facing documentation
-   - What is Myskillium
-   - Quick start (template vs sync)
-   - List of included skills/commands
+## Step 4: Validate
 
-3. **.myskillium-version** - Version tracking
-   - Initial: `v0.1.0` or commit SHA
-
-4. **.gitignore** - Ignore patterns
-   - `*.db` (database files)
-   - `__pycache__/`
-   - `.claude/local/`
-
-## Phase 4: Create Sync Scripts
-
-1. **sync-myskillium.sh** (Bash)
-2. **sync-myskillium.py** (Python)
-
-See `04-sync-script-spec.md` for requirements.
-
-## Phase 5: Migrate Content
-
-Run the scrape plan (`05-scrape-plan.md`) to extract content from StoryTree.
-
-## Phase 6: Enable Template
-
-1. GitHub Settings > General
-2. Check "Template repository"
-3. Test with "Use this template" button
-
-## Phase 7: Validate
-
-Run the testing plan (`07-testing-plan.md`).
-
-## Deliverables
-
-- [ ] Empty repo with directory structure
-- [ ] CLAUDE.md
-- [ ] README.md
-- [ ] Sync scripts (sh + py)
-- [ ] .gitignore
-- [ ] Template enabled
+Test the setup (see `07-testing-plan.md`).
 """,
 
     "04-sync-script-spec.md": """\
