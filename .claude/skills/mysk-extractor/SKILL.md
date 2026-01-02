@@ -1,90 +1,128 @@
 ---
-name: skill-extractor
+name: mysk-extractor
 description: Use when migrating skills between repositories or extracting skills from a project into a reusable form. Handles copying, cleanup of project-specific references, and genealogy documentation.
 ---
 
-# Skill Extractor
+# Mysk Extractor
 
-Migrate skills from one repository to another while cleaning up project-specific references and documenting provenance.
+Migrate and crossbreed skills between repositories while documenting provenance for reproducibility research.
 
-## Quick Start
+## Processes
 
-1. Define migration in config (see `genealogy/templates/migration-config.json`)
-2. Run phases: Copy → Cleanup → Genealogy → Commit
+This skill supports three operations, named after mycological reproductive processes:
 
-## Workflow
+| Process | File | Description |
+|---------|------|-------------|
+| **Conidiation** | `processes/conidiation.md` | Spore production - create/update the portable extraction tool |
+| **Fragmentation** | `processes/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
+| **Plasmogamy** | `processes/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
 
-### Phase 1: Configure
+## Pedigree Schema
 
-Create or update migration config with:
-- Source/destination paths
-- Skills to migrate
-- Cleanup replacements (project-specific → generic)
+Every extracted skill gets a genealogy file documenting its lineage.
 
-See `genealogy/templates/migration-config.json` for structure.
-
-### Phase 2: Copy
-
-```bash
-# For each skill in config
-cp -r "<source>/<skill>/" "<destination>/<skill>/"
-```
-
-### Phase 3: Cleanup
-
-**Scan** for project-specific references:
-```bash
-grep -r -i "pattern1\|pattern2\|pattern3" "<destination>/" || echo "Clean"
-```
-
-**Replace** according to config:
-
-| Type | Example Find | Example Replace |
-|------|--------------|-----------------|
-| Project name | `SyncoPaid` | `myapp` |
-| Domain term | `story` → `task` | (whole word only) |
-| Package name | `syncopaid.module` | `myapp.module` |
-| Specific path | `tests/test_project.py` | "your test file" |
-| Historical ref | "In the ProjectX case" | "In one case" |
-
-**Verify** - remaining matches should be false positives only:
-- "history" matching "story" pattern ✓
-- "submodule" as programming term ✓
-
-### Phase 4: Genealogy
-
-Create `<genealogy-path>/<skill-name>.json`:
+### Schema Structure
 
 ```json
 {
-  "name": "<from-frontmatter>",
-  "description": "<from-frontmatter>",
-  "sourceURL": "<https://github.com/org/repo.git>",
-  "date": "<YYYY-MM-DD>"
+  "name": "skill-name",
+  "description": "Skill description from frontmatter",
+  "pedigree": [
+    {
+      "date": "YYYY-MM-DD",
+      "sourceURL": "https://github.com/org/source-repo.git",
+      "sourcePath": ".claude/skills/original-skill",
+      "sourceCommitID": "abcdef1234567890abcdef1234567890abcdef12",
+      "destURL": "https://github.com/org/dest-repo.git",
+      "destPath": ".claude/skills/extracted-skill",
+      "destCommitID": "1234567890abcdef1234567890abcdef12345678",
+      "destOperator": ".claude/skills/mysk-extractor/SKILL.md",
+      "destModel": "claude-opus-4-5-20251101"
+    }
+  ]
 }
 ```
 
-### Phase 5: Commit
+### Field Reference
 
-```
-feat: migrate N skills from <source-repo>
+| Field | Purpose |
+|-------|---------|
+| `date` | When the extraction occurred |
+| `sourceURL` | Git URL of the source repository |
+| `sourcePath` | Path to skill within source repo |
+| `sourceCommitID` | Exact commit hash at extraction time |
+| `destURL` | Git URL of the destination repository |
+| `destPath` | Path to skill within destination repo |
+| `destCommitID` | Commit hash after extraction was committed |
+| `destOperator` | The skill file that performed the extraction |
+| `destModel` | Claude model ID that executed the operator |
 
-Skills: skill-1, skill-2, ...
-Project-specific references cleaned up.
-```
+### Crossbreeding Support
+
+The `pedigree` array supports multiple entries for hybrid skills:
+- Single entry = conidiation (one parent)
+- Multiple entries = plasmogamy (multiple parents fused)
+
+## Experimental Design: Isolated Agents
+
+### Why Exclude Human Input
+
+The pedigree schema captures all variables needed to theoretically reproduce a skill extraction:
+- Source content (via `sourceCommitID`)
+- Transformation logic (via `destOperator` at `destCommitID`)
+- Model version (via `destModel`)
+
+However, if human prompts influence the extraction, they become an uncontrolled variable that breaks reproducibility.
+
+### Isolating Claude's Non-Determinism
+
+By designing extraction processes to:
+1. **Spawn subagents** rather than work in the main conversation
+2. **Feed structured data** rather than conversation history
+3. **Exclude human prompt context** from the transformation
+
+We control for all external variables, leaving **Claude's inherent non-determinism as the only remaining variable**.
+
+This enables experiments like:
+- Run identical extractions N times → measure output variance
+- Compare variance across different operator designs
+- Correlate variance with task complexity
+
+The pedigree file serves dual purposes:
+1. **Genealogy record** - trace skill ancestry
+2. **Experimental control log** - prove all controllable variables were fixed
+
+### Implications for Process Design
+
+Both `fragmentation.md` and `plasmogamy.md` processes MUST:
+- Use the Task tool to spawn isolated subagents
+- Provide all context via structured parameters, not conversation history
+- Record the exact operator and model in the pedigree
 
 ## Templates
 
 | File | Purpose |
 |------|---------|
-| `genealogy/templates/migration-config.json` | Example config with replacements |
-| `genealogy/templates/pedigree.json` | Genealogy file structure |
+| `genealogy/templates/migration-config.json` | Migration configuration structure |
+| `genealogy/templates/pedigree.json` | Pedigree file template |
+
+## Workflow (Fragmentation)
+
+See `processes/fragmentation.md` for the full single-source extraction workflow.
+
+High-level phases:
+1. **Configure** - Define source/destination and cleanup rules
+2. **Copy** - Transfer skill files
+3. **Cleanup** - Generalize project-specific references
+4. **Genealogy** - Create pedigree record
+5. **Commit** - Finalize with descriptive message
 
 ## Checklist
 
+- [ ] Process spawns isolated subagent (no conversation context)
+- [ ] Subagent receives structured data only
 - [ ] Skills copied to destination
 - [ ] Project names generalized
 - [ ] Domain terms universalized
-- [ ] Example paths made generic
-- [ ] Genealogy file created per skill
-- [ ] Final scan shows only false positives
+- [ ] Pedigree file created with all fields populated
+- [ ] destCommitID recorded after commit
