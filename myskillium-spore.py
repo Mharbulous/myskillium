@@ -816,10 +816,13 @@ def read_version_yml(project_root: Path) -> dict:
     """
     Read version.yml file and return parsed data.
 
-    Returns dict with 'last_check' (datetime or None), 'hash' (str or None).
+    Returns dict with:
+    - 'last_check': datetime, "germinating", or None
+    - 'hash': str or None
+    - 'version': float or None
     """
     version_path = project_root / VERSION_FILE
-    result = {"last_check": None, "hash": None}
+    result = {"last_check": None, "hash": None, "version": None}
 
     if not version_path.exists():
         return result
@@ -828,19 +831,27 @@ def read_version_yml(project_root: Path) -> dict:
         content = version_path.read_text(encoding="utf-8")
         # Extract hash using shared helper
         result["hash"] = _extract_hash_from_yml(content)
-        # Parse last_check timestamp
+        # Parse each line
         for line in content.splitlines():
             line = line.strip()
             if line.startswith("last_check:"):
                 ts_str = line.split(":", 1)[1].strip().strip('"\'')
+                # Check for special "germinating" status
+                if ts_str == "germinating":
+                    result["last_check"] = "germinating"
+                else:
+                    try:
+                        dt = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+                        if dt.tzinfo is None:
+                            dt = dt.replace(tzinfo=timezone.utc)
+                        result["last_check"] = dt
+                    except ValueError:
+                        pass
+            elif line.startswith("version:"):
                 try:
-                    dt = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
-                    if dt.tzinfo is None:
-                        dt = dt.replace(tzinfo=timezone.utc)
-                    result["last_check"] = dt
+                    result["version"] = float(line.split(":", 1)[1].strip())
                 except ValueError:
                     pass
-                break  # Found last_check, no need to continue
     except (OSError, IOError):
         pass
 
@@ -855,6 +866,28 @@ def write_version_yml(project_root: Path, embedded_hash: str) -> None:
 # Auto-generated - do not edit manually
 last_check: "{timestamp}"
 hash: "{embedded_hash}"
+version: 0.1
+"""
+    try:
+        version_path.parent.mkdir(parents=True, exist_ok=True)
+        version_path.write_text(content, encoding="utf-8")
+    except (OSError, IOError):
+        pass  # Non-fatal - will just recheck next time
+
+
+def write_germinating_version_yml(project_root: Path, embedded_hash: str) -> None:
+    """
+    Write version.yml with germinating status.
+
+    This special status keeps the bootstrap hook triggering until the process
+    reaches a step where it checks the root template repo's version.yml.
+    """
+    version_path = project_root / VERSION_FILE
+    content = f"""# Myskillium Bootstrap Version Tracking
+# Auto-generated - do not edit manually
+last_check: "germinating"
+hash: "{embedded_hash}"
+version: 0.1
 """
     try:
         version_path.parent.mkdir(parents=True, exist_ok=True)
@@ -864,12 +897,20 @@ hash: "{embedded_hash}"
 
 
 def hours_since_last_check(project_root: Path) -> float:
-    """Calculate hours since the last hash check from version.yml."""
+    """
+    Calculate hours since the last hash check from version.yml.
+
+    Returns infinity if:
+    - No version.yml exists
+    - last_check is "germinating" (keeps triggering bootstrap)
+    - last_check couldn't be parsed
+    """
     version_data = read_version_yml(project_root)
     last_check = version_data.get("last_check")
 
-    if last_check is None:
-        return float("inf")  # Never checked - trigger full check
+    # If germinating or missing, always trigger full check
+    if last_check is None or last_check == "germinating":
+        return float("inf")
 
     now = datetime.now(timezone.utc)
     delta = now - last_check
@@ -891,9 +932,33 @@ def fetch_remote_hash(timeout: float = 5.0) -> str | None:
         return None
 
 
+def germinate(project_root: Path, skill_dir: Path) -> None:
+    """
+    Germination mode: Force-write all embedded docs with germinating status.
+
+    This is used for initial setup. The "germinating" status in version.yml
+    keeps the bootstrap hook triggering until the process advances to a step
+    where it checks the root template repo's version.yml.
+    """
+    embedded_hash = calculate_embedded_hash()
+    write_embedded_docs(skill_dir)
+    write_germinating_version_yml(project_root, embedded_hash)
+
+    print("## Bootstrap Skill Synced")
+    print()
+    print(f"Bootstrap docs written to `{BOOTSTRAP_SKILL_DIR}/`")
+    print()
+    print("This skill contains 7 planning documents for setting up Myskillium.")
+    print("Read `03-bootstrap-plan.md` to begin the bootstrap process.")
+
+
 def main():
     """
     Main entry point for the bootstrap check hook.
+
+    Modes:
+    - --germinate: Force write all docs with germinating status
+    - (default): Run the optimized check workflow
 
     Optimized workflow (fastest checks first):
     1. 24h fast path → silent exit if recently checked (most common case)
@@ -908,6 +973,11 @@ def main():
     """
     project_root = get_project_root()
     skill_dir = get_skill_dir(project_root)
+
+    # ==== Handle --germinate flag ====
+    if "--germinate" in sys.argv:
+        germinate(project_root, skill_dir)
+        sys.exit(0)
 
     # ==== STEP 1: 24-Hour Fast Path (most common case for dependents) ====
     # If version.yml exists and <24h elapsed, exit immediately.
