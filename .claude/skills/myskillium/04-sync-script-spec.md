@@ -13,10 +13,6 @@ Two sync scripts that fetch latest Myskillium and update local project:
 1. **Fetch source**: Clone Myskillium repo (shallow, to temp directory)
 2. **Copy components**:
    - `.claude/skills/*` → local `.claude/skills/`
-   - `.claude/commands/*` → local `.claude/commands/`
-   - `.claude/scripts/*` → local `.claude/scripts/`
-   - `.claude/data/schema.sql` → local `.claude/data/schema.sql`
-   - `.github/workflows/*` → local `.github/workflows/`
 3. **Preserve project-specific files**:
    - `.claude/data/*.db` (never overwrite)
    - `.claude/local/*` (never touch)
@@ -55,15 +51,10 @@ def sync():
 
     # Copy (with exclusions)
     copy_tree(f"{temp_dir}/.claude/skills", ".claude/skills")
-    copy_tree(f"{temp_dir}/.claude/commands", ".claude/commands")
-    copy_tree(f"{temp_dir}/.claude/scripts", ".claude/scripts")
-    copy_file(f"{temp_dir}/.claude/data/schema.sql", ".claude/data/schema.sql")
-    copy_tree(f"{temp_dir}/.github/workflows", ".github/workflows")
 
     # DO NOT copy:
     # - .claude/data/*.db
     # - .claude/local/
-    # - gui/ (optional - user decides)
 
     # Update version
     write_file(".myskillium-version", new_version)
@@ -86,5 +77,5 @@ def sync():
 ## CLI Options (Future)
 
 ```bash
-sync-myskillium.py [--dry-run] [--include-gui] [--version]
+sync-myskillium.py [--dry-run] [--version]
 ```

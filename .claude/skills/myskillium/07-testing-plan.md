@@ -22,8 +22,7 @@ Validate that Myskillium works correctly as a template and via sync.
 4. Clone locally
 
 **Expected:**
-- All `.claude/` files present
-- All `.github/workflows/` files present
+- All `.claude/skills/` files present
 - No symlinks in the repo
 - `.myskillium-version` present
 
@@ -39,18 +38,7 @@ Validate that Myskillium works correctly as a template and via sync.
 - SKILL.md content is accessible
 - No errors about missing files
 
-### T3: Commands Available
-
-**Steps:**
-1. Type `/` in Claude Code
-2. Look for custom commands
-
-**Expected:**
-- `ci-create-plan` appears
-- `design-story` appears
-- Commands execute without error
-
-### T4: Sync Script (Bash)
+### T3: Sync Script (Bash)
 
 **Steps:**
 1. Create a project (not from template)
@@ -58,21 +46,21 @@ Validate that Myskillium works correctly as a template and via sync.
 
 **Expected:**
 - Script clones Myskillium
-- Files copied to `.claude/` and `.github/`
+- Skills copied to `.claude/skills/`
 - `.myskillium-version` created
 - No errors
 
-### T5: Sync Script (Python)
+### T4: Sync Script (Python)
 
 **Steps:**
 1. Create a project (not from template)
 2. Run `python sync-myskillium.py`
 
 **Expected:**
-- Same as T4
+- Same as T3
 - Works on Windows
 
-### T6: Sync Preserves Project Files
+### T5: Sync Preserves Project Files
 
 **Steps:**
 1. Create project from template
@@ -83,9 +71,9 @@ Validate that Myskillium works correctly as a template and via sync.
 **Expected:**
 - `test.db` still exists
 - `mydata.json` still exists
-- Other files updated
+- Skills updated
 
-### T7: Sync Updates Version
+### T6: Sync Updates Version
 
 **Steps:**
 1. Note current `.myskillium-version`
@@ -95,29 +83,17 @@ Validate that Myskillium works correctly as a template and via sync.
 **Expected:**
 - `.myskillium-version` has new SHA
 
-### T8: GUI Runs Standalone
-
-**Steps:**
-1. `cd gui/`
-2. `pip install -r requirements.txt`
-3. `python xstory.py --help` (or similar)
-
-**Expected:**
-- No import errors
-- Help text displays (or GUI launches)
-
-### T9: Web Compatibility
+### T7: Web Compatibility
 
 **Steps:**
 1. Push project to GitHub
 2. Open in Claude Code web
-3. Reference skills/commands
+3. Reference skills
 
 **Expected:**
 - Skills work (files are committed, not symlinked)
-- Commands work
 
-### T10: Windows Compatibility
+### T8: Windows Compatibility
 
 **Steps:**
 1. Clone Myskillium on Windows
@@ -132,11 +108,9 @@ Validate that Myskillium works correctly as a template and via sync.
 
 After any change to Myskillium:
 - [ ] T1: Template creation still works
-- [ ] T4/T5: Sync scripts still work
-- [ ] T6: Project files still preserved
+- [ ] T3/T4: Sync scripts still work
+- [ ] T5: Project files still preserved
 
 ## Known Limitations to Document
 
 - Sync is manual (not automatic)
-- GUI requires Python + PySide6
-- Large files may slow clone

@@ -12,7 +12,7 @@ Build the sync mechanism (see `04-sync-script-spec.md`):
 
 ## Step 2: Migrate Content
 
-Extract components from existing projects (see `05-scrape-plan.md`).
+Extract skills from existing projects (see `05-scrape-plan.md`).
 
 ## Step 3: Enable Template
 

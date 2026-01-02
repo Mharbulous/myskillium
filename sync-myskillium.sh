@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# Sync Myskillium components to local project.
+# Sync Myskillium skills to local project.
 #
-# Fetches the latest Myskillium repository and copies shared components
-# (skills, commands, scripts, workflows) while preserving project-specific files.
+# Fetches the latest Myskillium repository and copies shared skills
+# while preserving project-specific files.
 #
 # Usage:
 #     ./sync-myskillium.sh [--dry-run]
@@ -120,45 +120,8 @@ sync_dir() {
     done < <(find "$TEMP_DIR/$src" -type f -print0)
 }
 
-# Function to sync a single file
-sync_file() {
-    local src="$1"
-    local dst="$2"
-
-    local src_file="$TEMP_DIR/$src"
-    local dst_file="$PROJECT_DIR/$dst"
-
-    if [[ ! -f "$src_file" ]]; then
-        return
-    fi
-
-    # Compare files
-    if [[ -f "$dst_file" ]]; then
-        if cmp -s "$src_file" "$dst_file"; then
-            ((UNCHANGED++)) || true
-            return
-        else
-            UPDATED+=("$dst")
-        fi
-    else
-        ADDED+=("$dst")
-    fi
-
-    # Copy file
-    if [[ "$DRY_RUN" == "false" ]]; then
-        mkdir -p "$(dirname "$dst_file")"
-        cp "$src_file" "$dst_file"
-    fi
-}
-
-# Sync directories
+# Sync skills directory only
 sync_dir ".claude/skills" ".claude/skills"
-sync_dir ".claude/commands" ".claude/commands"
-sync_dir ".claude/scripts" ".claude/scripts"
-sync_dir ".github/workflows" ".github/workflows"
-
-# Sync individual files
-sync_file ".claude/data/schema.sql" ".claude/data/schema.sql"
 
 # Update version file
 if [[ "$DRY_RUN" == "false" ]]; then
