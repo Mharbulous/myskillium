@@ -1,0 +1,166 @@
+{
+  "title": "Testing Workflow",
+  "description": "Test case execution flow for validating Myskillium works as template and via sync",
+  "type": "flowchart",
+  "direction": "TD",
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start Testing",
+      "type": "circle"
+    },
+    {
+      "id": "ENV_HEADER",
+      "label": "Test Environments",
+      "type": "rectangle",
+      "style": "fill:#E0E0E0"
+    },
+    {
+      "id": "ENV1",
+      "label": "Local CLI\n(VS Code)",
+      "type": "rectangle"
+    },
+    {
+      "id": "ENV2",
+      "label": "Claude Code Web",
+      "type": "rectangle"
+    },
+    {
+      "id": "ENV3",
+      "label": "Windows",
+      "type": "rectangle"
+    },
+    {
+      "id": "ENV4",
+      "label": "Linux/Mac",
+      "type": "rectangle"
+    },
+    {
+      "id": "T1",
+      "label": "T1: Template Creation\nUse template on GitHub",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "T2",
+      "label": "T2: Skills Load\nOpen in Claude Code",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "T3",
+      "label": "T3: Commands Available\nCheck / commands",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "T4",
+      "label": "T4: Sync Script (Bash)\n./sync-myskillium.sh",
+      "type": "rectangle",
+      "style": "fill:#98FB98"
+    },
+    {
+      "id": "T5",
+      "label": "T5: Sync Script (Python)\npython sync-myskillium.py",
+      "type": "rectangle",
+      "style": "fill:#98FB98"
+    },
+    {
+      "id": "T6",
+      "label": "T6: Preserves Project Files\n*.db, local/, settings",
+      "type": "rectangle",
+      "style": "fill:#98FB98"
+    },
+    {
+      "id": "T7",
+      "label": "T7: Sync Updates Version\n.myskillium-version",
+      "type": "rectangle",
+      "style": "fill:#98FB98"
+    },
+    {
+      "id": "T8",
+      "label": "T8: GUI Runs Standalone\npython xstory.py",
+      "type": "rectangle",
+      "style": "fill:#FFD700"
+    },
+    {
+      "id": "T9",
+      "label": "T9: Web Compatibility\nClaude Code web",
+      "type": "rectangle",
+      "style": "fill:#FFD700"
+    },
+    {
+      "id": "T10",
+      "label": "T10: Windows Compatibility\nNo symlink errors",
+      "type": "rectangle",
+      "style": "fill:#FFD700"
+    },
+    {
+      "id": "REGRESSION",
+      "label": "Regression Tests\nT1, T4/T5, T6",
+      "type": "rectangle",
+      "style": "fill:#DDA0DD"
+    },
+    {
+      "id": "ALL_PASS",
+      "label": "All tests pass?",
+      "type": "diamond"
+    },
+    {
+      "id": "FIX",
+      "label": "Fix issues",
+      "type": "rectangle",
+      "style": "fill:#FF6B6B"
+    },
+    {
+      "id": "END",
+      "label": "Testing Complete",
+      "type": "circle",
+      "style": "fill:#90EE90"
+    }
+  ],
+  "edges": [
+    { "from": "START", "to": "ENV_HEADER", "label": "" },
+    { "from": "ENV_HEADER", "to": "ENV1", "label": "", "style": "dotted" },
+    { "from": "ENV_HEADER", "to": "ENV2", "label": "", "style": "dotted" },
+    { "from": "ENV_HEADER", "to": "ENV3", "label": "", "style": "dotted" },
+    { "from": "ENV_HEADER", "to": "ENV4", "label": "", "style": "dotted" },
+    { "from": "ENV_HEADER", "to": "T1", "label": "" },
+    { "from": "T1", "to": "T2", "label": "" },
+    { "from": "T2", "to": "T3", "label": "" },
+    { "from": "T3", "to": "T4", "label": "" },
+    { "from": "T4", "to": "T5", "label": "" },
+    { "from": "T5", "to": "T6", "label": "" },
+    { "from": "T6", "to": "T7", "label": "" },
+    { "from": "T7", "to": "T8", "label": "" },
+    { "from": "T8", "to": "T9", "label": "" },
+    { "from": "T9", "to": "T10", "label": "" },
+    { "from": "T10", "to": "REGRESSION", "label": "" },
+    { "from": "REGRESSION", "to": "ALL_PASS", "label": "" },
+    { "from": "ALL_PASS", "to": "FIX", "label": "No" },
+    { "from": "FIX", "to": "T1", "label": "Re-run", "style": "dotted" },
+    { "from": "ALL_PASS", "to": "END", "label": "Yes" }
+  ],
+  "test_groups": [
+    {
+      "name": "Core Template Tests",
+      "tests": ["T1", "T2", "T3"],
+      "color": "#87CEEB"
+    },
+    {
+      "name": "Sync Tests",
+      "tests": ["T4", "T5", "T6", "T7"],
+      "color": "#98FB98"
+    },
+    {
+      "name": "Compatibility Tests",
+      "tests": ["T8", "T9", "T10"],
+      "color": "#FFD700"
+    }
+  ],
+  "known_limitations": [
+    "Sync is manual (not automatic)",
+    "GUI requires Python + PySide6",
+    "Large files may slow clone"
+  ]
+}

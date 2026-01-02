@@ -1,0 +1,88 @@
+{
+  "title": "Content Migration Workflow",
+  "description": "Process for extracting components from StoryTree into Myskillium",
+  "type": "flowchart",
+  "direction": "TD",
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Start Migration",
+      "type": "circle"
+    },
+    {
+      "id": "INVENTORY",
+      "label": "1. INVENTORY\nList all files in each\nsource location",
+      "type": "rectangle"
+    },
+    {
+      "id": "CATEGORIZE",
+      "label": "2. CATEGORIZE\nGeneric vs StoryTree-specific",
+      "type": "rectangle"
+    },
+    {
+      "id": "DECISION",
+      "label": "Is component\ngeneric?",
+      "type": "diamond"
+    },
+    {
+      "id": "LEAVE",
+      "label": "Leave in StoryTree",
+      "type": "rectangle",
+      "style": "fill:#E0E0E0"
+    },
+    {
+      "id": "COPY",
+      "label": "3. COPY\nMove to Myskillium structure",
+      "type": "rectangle",
+      "style": "fill:#90EE90"
+    },
+    {
+      "id": "VERIFY",
+      "label": "4. VERIFY\nCheck for broken references",
+      "type": "rectangle"
+    },
+    {
+      "id": "TEST",
+      "label": "5. TEST\nRun skills/commands\nin Myskillium",
+      "type": "rectangle"
+    },
+    {
+      "id": "CLEANUP",
+      "label": "Post-Migration Cleanup\n- Update hardcoded refs\n- Simplify SKILL.md files\n- Update schema comments",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "END",
+      "label": "Migration Complete",
+      "type": "circle",
+      "style": "fill:#90EE90"
+    }
+  ],
+  "edges": [
+    { "from": "START", "to": "INVENTORY", "label": "" },
+    { "from": "INVENTORY", "to": "CATEGORIZE", "label": "" },
+    { "from": "CATEGORIZE", "to": "DECISION", "label": "" },
+    { "from": "DECISION", "to": "LEAVE", "label": "No" },
+    { "from": "DECISION", "to": "COPY", "label": "Yes" },
+    { "from": "LEAVE", "to": "CATEGORIZE", "label": "Next item", "style": "dotted" },
+    { "from": "COPY", "to": "VERIFY", "label": "" },
+    { "from": "VERIFY", "to": "TEST", "label": "" },
+    { "from": "TEST", "to": "CLEANUP", "label": "" },
+    { "from": "CLEANUP", "to": "END", "label": "" }
+  ],
+  "source_mappings": [
+    { "from": "StoryTree/distributables/claude/skills/", "to": ".claude/skills/" },
+    { "from": "StoryTree/distributables/claude/commands/", "to": ".claude/commands/" },
+    { "from": "StoryTree/distributables/claude/scripts/", "to": ".claude/scripts/" },
+    { "from": "StoryTree/distributables/claude/data/schema.sql", "to": ".claude/data/schema.sql" },
+    { "from": "StoryTree/distributables/github/workflows/", "to": ".github/workflows/" },
+    { "from": "StoryTree/gui/", "to": "gui/" }
+  ],
+  "do_not_migrate": [
+    "Submodule infrastructure (setup.py, manifests)",
+    "StoryTree-specific docs (ai_docs/)",
+    "Database files (*.db)",
+    "Symlinks (copy actual content)"
+  ]
+}
