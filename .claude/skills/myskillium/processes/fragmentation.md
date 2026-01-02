@@ -13,7 +13,7 @@ This is common in fungi that spread through soil or substrate - pieces of the hy
 
 ## Skill Analogy
 
-In the mysk-extractor context, fragmentation refers to **extracting a skill from one repository to grow in another**. The skill is a "fragment" of the source repo's functionality that becomes independent in its new home.
+In the myskillium context, fragmentation refers to **extracting a skill from one repository to grow in another**. The skill is a "fragment" of the source repo's functionality that becomes independent in its new home.
 
 Key parallels:
 - The skill (fragment) is viable on its own
@@ -89,7 +89,7 @@ Create pedigree file at `genealogy/<skill-name>.json`:
       "destURL": "https://github.com/org/dest-repo.git",
       "destPath": ".claude/skills/skill-name",
       "destCommitID": "<recorded-after-commit>",
-      "destOperator": ".claude/skills/mysk-extractor/SKILL.md",
+      "destOperator": ".claude/skills/myskillium/SKILL.md",
       "destModel": "<model-id>"
     }
   ]

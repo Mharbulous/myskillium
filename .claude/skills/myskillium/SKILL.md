@@ -1,5 +1,5 @@
 ---
-name: mysk-extractor
+name: myskillium
 description: Use when migrating skills between repositories or extracting skills from a project into a reusable form. Handles copying, cleanup of project-specific references, and genealogy documentation.
 ---
 
@@ -23,25 +23,7 @@ Every extracted skill gets a genealogy file documenting its lineage.
 
 ### Schema Structure
 
-```json
-{
-  "name": "skill-name",
-  "description": "Skill description from frontmatter",
-  "pedigree": [
-    {
-      "date": "YYYY-MM-DD",
-      "sourceURL": "https://github.com/org/source-repo.git",
-      "sourcePath": ".claude/skills/original-skill",
-      "sourceCommitID": "abcdef1234567890abcdef1234567890abcdef12",
-      "destURL": "https://github.com/org/dest-repo.git",
-      "destPath": ".claude/skills/extracted-skill",
-      "destCommitID": "1234567890abcdef1234567890abcdef12345678",
-      "destOperator": ".claude/skills/mysk-extractor/SKILL.md",
-      "destModel": "claude-opus-4-5-20251101"
-    }
-  ]
-}
-```
+See `genealogy/templates/pedigree.json` for the schema template.
 
 ### Field Reference
 

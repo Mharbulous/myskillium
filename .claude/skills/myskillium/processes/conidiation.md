@@ -10,11 +10,11 @@
 
 ## Skill Analogy
 
-In the mysk-extractor context, conidiation refers to **creating or updating the portable extraction tool** (`myskillium-spore.py`). Just as fungi produce spores to enable reproduction elsewhere, this process creates the mechanism that enables skill extraction across repositories.
+In the myskillium context, conidiation refers to **creating or updating the portable extraction tool** (`myskillium-spore.py`). Just as fungi produce spores to enable reproduction elsewhere, this process creates the mechanism that enables skill extraction across repositories.
 
 ## Purpose
 
-The spore tool is a standalone script that can be copied into any repository to perform skill extraction without requiring the full mysk-extractor skill to be present.
+The spore tool is a standalone script that can be copied into any repository to perform skill extraction without requiring the full myskillium skill to be present.
 
 ## Process
 
@@ -25,7 +25,7 @@ The spore tool is a standalone script that can be copied into any repository to 
 1. **Package extraction logic** into portable Python script
 2. **Include pedigree schema** for genealogy documentation
 3. **Minimize dependencies** for maximum portability
-4. **Version the spore** with its parent mysk-extractor commit
+4. **Version the spore** with its parent myskillium commit
 
 ### Output
 

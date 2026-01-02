@@ -10,7 +10,7 @@
       "destURL": "https://github.com/org/repo.git",
       "destPath": ".claude/skills/skill-name",
       "destCommitID": "1234567890abcdef1234567890abcdef12345678",      
-      "destOperator": ".claude\skills\mysk-extractor\SKILL.md", 
+      "destOperator": ".claude\skills\myskillium\SKILL.md", 
       "destModel": "claude-opus-4-5-20251101"
     }
   ]

@@ -13,7 +13,7 @@ This is distinct from asexual reproduction (fragmentation, conidiation) because 
 
 ## Skill Analogy
 
-In the mysk-extractor context, plasmogamy refers to **fusing two or more skills into a single hybrid skill**. Just as fungal plasmogamy combines genetic material from multiple parents, skill plasmogamy combines functionality, patterns, and approaches from multiple source skills.
+In the myskillium context, plasmogamy refers to **fusing two or more skills into a single hybrid skill**. Just as fungal plasmogamy combines genetic material from multiple parents, skill plasmogamy combines functionality, patterns, and approaches from multiple source skills.
 
 Key parallels:
 - Two (or more) parent skills contribute to the hybrid
@@ -74,7 +74,7 @@ Create pedigree with **multiple entries** in the array:
       "destURL": "https://github.com/org/myskillium.git",
       "destPath": ".claude/skills/hybrid-skill",
       "destCommitID": "<recorded-after-commit>",
-      "destOperator": ".claude/skills/mysk-extractor/SKILL.md",
+      "destOperator": ".claude/skills/myskillium/SKILL.md",
       "destModel": "<model-id>"
     },
     {
@@ -85,7 +85,7 @@ Create pedigree with **multiple entries** in the array:
       "destURL": "https://github.com/org/myskillium.git",
       "destPath": ".claude/skills/hybrid-skill",
       "destCommitID": "<recorded-after-commit>",
-      "destOperator": ".claude/skills/mysk-extractor/SKILL.md",
+      "destOperator": ".claude/skills/myskillium/SKILL.md",
       "destModel": "<model-id>"
     }
   ]
