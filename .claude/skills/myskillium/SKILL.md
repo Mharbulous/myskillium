@@ -13,12 +13,12 @@ This skill defines six processes, named after mycological and cellular biology:
 
 | Process | File | Description |
 |---------|------|-------------|
-| **Conidiation** | `core/conidiation.md` | Spore production - create/update the portable extraction tool |
-| **Fragmentation** | `core/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
-| **Plasmogamy** | `core/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
-| **Homeostasis** | `core/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
-| **Apoptosis** | `core/apoptosis.md` | Programmed death - controlled removal/uninstallation |
-| **Tropism** | `core/tropism.md` | Sensory process - discover and locate skills from external sources |
+| **Conidiation** | `substrate/conidiation.md` | Spore production - create/update the portable extraction tool |
+| **Fragmentation** | `substrate/fragmentation.md` | Asexual reproduction - extract a skill from a single source repo |
+| **Plasmogamy** | `substrate/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
+| **Homeostasis** | `substrate/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
+| **Apoptosis** | `substrate/apoptosis.md` | Programmed death - controlled removal/uninstallation |
+| **Tropism** | `substrate/tropism.md` | Sensory process - discover and locate skills from external sources |
 
 ## Pedigree Schema
 
@@ -93,7 +93,7 @@ Both `fragmentation.md` and `plasmogamy.md` processes MUST:
 
 ## Workflow (Fragmentation)
 
-See `core/fragmentation.md` for the full single-source extraction workflow.
+See `substrate/fragmentation.md` for the full single-source extraction workflow.
 
 High-level phases:
 1. **Configure** - Define source/destination and cleanup rules

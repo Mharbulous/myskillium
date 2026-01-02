@@ -86,7 +86,7 @@ This removes:
 - `SKILL.md` - The skill definition
 - `README.md` - Documentation
 - `version.yml` - Version tracking
-- `core/` - All process documentation
+- `substrate/` - All process documentation
 - `scripts/` - The scripts directory (now empty)
 
 ### Phase 4: Commit (Optional)

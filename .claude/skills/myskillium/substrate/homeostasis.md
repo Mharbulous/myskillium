@@ -34,13 +34,13 @@ The script embeds all essential myskillium files:
 |------|---------|
 | `README.md` | Installation and overview |
 | `SKILL.md` | Skill definition and process index |
-| `core/conidiation.md` | Spore creation process |
-| `core/fragmentation.md` | Skill extraction process |
-| `core/plasmogamy.md` | Skill fusion process |
-| `core/homeostasis.md` | This file - consistency maintenance |
-| `core/apoptosis.md` | Controlled removal process |
-| `core/tropism.md` | Skill discovery process |
-| `core/pedigree.json` | Template for genealogy records |
+| `substrate/conidiation.md` | Spore creation process |
+| `substrate/fragmentation.md` | Skill extraction process |
+| `substrate/plasmogamy.md` | Skill fusion process |
+| `substrate/homeostasis.md` | This file - consistency maintenance |
+| `substrate/apoptosis.md` | Controlled removal process |
+| `substrate/tropism.md` | Skill discovery process |
+| `substrate/pedigree.json` | Template for genealogy records |
 
 ### Relationship to myskillium-spore.py
 
@@ -66,7 +66,7 @@ flowchart TD
     ASK_OVERWRITE -->|Yes| GERMINATE
     CHECK_EXISTS -->|No| GERMINATE[Create directory structure]
 
-    GERMINATE --> WRITE_FILES[Write all 5 embedded files<br/>to core/]
+    GERMINATE --> WRITE_FILES[Write all 5 embedded files<br/>to substrate/]
     WRITE_FILES --> WRITE_SKILL[Write SKILL.md]
     WRITE_SKILL --> UPDATE_SETTINGS[Update .claude/settings.json<br/>Add SessionStart hook]
     UPDATE_SETTINGS --> WRITE_VERSION_G[Write version.yml]
@@ -136,7 +136,7 @@ The script:
    .claude/skills/myskillium/
    ├── SKILL.md
    ├── version.yml
-   ├── core/
+   ├── substrate/
    │   ├── conidiation.md
    │   ├── fragmentation.md
    │   ├── homeostasis.md
