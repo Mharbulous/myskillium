@@ -1,0 +1,141 @@
+{
+  "title": "Migration Phases Checklist",
+  "description": "Overall migration phases from pre-migration to post-migration",
+  "type": "flowchart",
+  "direction": "TD",
+  "nodes": [
+    {
+      "id": "START",
+      "label": "Begin Migration",
+      "type": "circle"
+    },
+    {
+      "id": "PRE",
+      "label": "PRE-MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#FFB6C1"
+    },
+    {
+      "id": "PRE_ITEMS",
+      "label": "- Repo created\n- Structure established\n- Sync scripts ready\n- StoryTree accessible",
+      "type": "rectangle"
+    },
+    {
+      "id": "SKILLS",
+      "label": "SKILLS MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "SKILLS_ITEMS",
+      "label": "- story-tree/\n- story-execution/\n- streamline/\n- SKILL.md updates",
+      "type": "rectangle"
+    },
+    {
+      "id": "COMMANDS",
+      "label": "COMMANDS MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "COMMANDS_ITEMS",
+      "label": "- ci-create-plan.md\n- ci-implement-plan.md\n- design-story.md",
+      "type": "rectangle"
+    },
+    {
+      "id": "SCRIPTS",
+      "label": "SCRIPTS MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "WORKFLOWS",
+      "label": "WORKFLOWS MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "SCHEMA",
+      "label": "SCHEMA MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "GUI",
+      "label": "GUI MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#87CEEB"
+    },
+    {
+      "id": "DOCS",
+      "label": "DOCUMENTATION",
+      "type": "rectangle",
+      "style": "fill:#98FB98"
+    },
+    {
+      "id": "DOCS_ITEMS",
+      "label": "- CLAUDE.md\n- README.md\n- No StoryTree refs",
+      "type": "rectangle"
+    },
+    {
+      "id": "CONFIG",
+      "label": "CONFIGURATION",
+      "type": "rectangle",
+      "style": "fill:#98FB98"
+    },
+    {
+      "id": "CONFIG_ITEMS",
+      "label": "- .gitignore\n- .myskillium-version\n- Template enabled",
+      "type": "rectangle"
+    },
+    {
+      "id": "VALIDATE",
+      "label": "VALIDATION",
+      "type": "rectangle",
+      "style": "fill:#FFD700"
+    },
+    {
+      "id": "VALIDATE_ITEMS",
+      "label": "- Test from template\n- Skills load\n- Commands work\n- Sync works",
+      "type": "rectangle"
+    },
+    {
+      "id": "POST",
+      "label": "POST-MIGRATION",
+      "type": "rectangle",
+      "style": "fill:#DDA0DD"
+    },
+    {
+      "id": "POST_ITEMS",
+      "label": "- Update StoryTree README\n- Archive StoryTree\n- Migrate dependents",
+      "type": "rectangle"
+    },
+    {
+      "id": "END",
+      "label": "Complete",
+      "type": "circle",
+      "style": "fill:#90EE90"
+    }
+  ],
+  "edges": [
+    { "from": "START", "to": "PRE", "label": "" },
+    { "from": "PRE", "to": "PRE_ITEMS", "label": "", "style": "dotted" },
+    { "from": "PRE", "to": "SKILLS", "label": "" },
+    { "from": "SKILLS", "to": "SKILLS_ITEMS", "label": "", "style": "dotted" },
+    { "from": "SKILLS", "to": "COMMANDS", "label": "" },
+    { "from": "COMMANDS", "to": "COMMANDS_ITEMS", "label": "", "style": "dotted" },
+    { "from": "COMMANDS", "to": "SCRIPTS", "label": "" },
+    { "from": "SCRIPTS", "to": "WORKFLOWS", "label": "" },
+    { "from": "WORKFLOWS", "to": "SCHEMA", "label": "" },
+    { "from": "SCHEMA", "to": "GUI", "label": "" },
+    { "from": "GUI", "to": "DOCS", "label": "" },
+    { "from": "DOCS", "to": "DOCS_ITEMS", "label": "", "style": "dotted" },
+    { "from": "DOCS", "to": "CONFIG", "label": "" },
+    { "from": "CONFIG", "to": "CONFIG_ITEMS", "label": "", "style": "dotted" },
+    { "from": "CONFIG", "to": "VALIDATE", "label": "" },
+    { "from": "VALIDATE", "to": "VALIDATE_ITEMS", "label": "", "style": "dotted" },
+    { "from": "VALIDATE", "to": "POST", "label": "" },
+    { "from": "POST", "to": "POST_ITEMS", "label": "", "style": "dotted" },
+    { "from": "POST", "to": "END", "label": "" }
+  ]
+}
