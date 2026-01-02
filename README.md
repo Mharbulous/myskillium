@@ -23,4 +23,4 @@ A symbiotic artificial intelligence organism dependent on Claude Code custom ski
 
 ## How it works
 
-The first time you use Claude Code in your repo after installing Myskillium, the spore will bootstrap itself into your repo as `.claude\skill\myskillium`.  It uses a 24-hour cache to stay silent most of the time, occassionally waking up at the start of a claude code session to do maintenance on the myskillium skill folder.
+The first time you use Claude Code in your repo after installing Myskillium, the spore will bootstrap itself into your repo as `.claude\skill\myskillium`.  It uses a 24-hour cache to stay silent most of the time, occassionally waking up at the start of a claude code session to check for updates or do maintenance on the myskillium skill folder.
