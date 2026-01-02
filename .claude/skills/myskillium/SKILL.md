@@ -9,7 +9,7 @@ Migrate and crossbreed skills between repositories while documenting provenance 
 
 ## Processes
 
-This skill defines five processes, named after mycological and cellular biology:
+This skill defines six processes, named after mycological and cellular biology:
 
 | Process | File | Description |
 |---------|------|-------------|
@@ -18,6 +18,7 @@ This skill defines five processes, named after mycological and cellular biology:
 | **Plasmogamy** | `processes/plasmogamy.md` | Sexual reproduction - fuse two skills into a hybrid |
 | **Homeostasis** | `processes/homeostasis.md` | Self-regulation - maintain process consistency across repositories |
 | **Apoptosis** | `processes/apoptosis.md` | Programmed death - controlled removal/uninstallation |
+| **Tropism** | `processes/tropism.md` | Sensory process - discover and locate skills from external sources |
 
 ## Pedigree Schema
 

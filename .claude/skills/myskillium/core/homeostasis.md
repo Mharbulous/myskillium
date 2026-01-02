@@ -39,6 +39,7 @@ The script embeds all essential myskillium files:
 | `processes/plasmogamy.md` | Skill fusion process |
 | `processes/homeostasis.md` | This file - consistency maintenance |
 | `processes/apoptosis.md` | Controlled removal process |
+| `processes/tropism.md` | Skill discovery process |
 | `processes/pedigree.json` | Template for genealogy records |
 
 ### Relationship to myskillium-spore.py
@@ -46,7 +47,7 @@ The script embeds all essential myskillium files:
 | Aspect | myskillium-spore.py | conidium.py |
 |--------|---------------------|-------------|
 | **Primary role** | Bootstrap planning docs | Bootstrap + maintain myskillium skill |
-| **Embedded content** | 7 planning docs (01-07) | 8 embedded files |
+| **Embedded content** | 7 planning docs (01-07) | 9 embedded files |
 | **Target directory** | `.claude/skills/bootstrap/` | `.claude/skills/myskillium/` |
 | **Germination** | Writes docs on first run | `--germinate` flag creates full skill |
 | **Hook behavior** | Checks for updates | Restores drifted processes |
