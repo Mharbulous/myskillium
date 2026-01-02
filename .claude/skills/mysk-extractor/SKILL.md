@@ -59,17 +59,8 @@ Create `<genealogy-path>/<skill-name>.json`:
 {
   "name": "<from-frontmatter>",
   "description": "<from-frontmatter>",
-  "version": "1.0.0",
-  "source": {
-    "repository": "<source-repo>",
-    "path": "<original-path>"
-  },
-  "migration": {
-    "date": "<YYYY-MM-DD>",
-    "destinationPath": "<new-path>",
-    "changes": ["<each edit made>"]
-  },
-  "files": ["<all files in skill>"]
+  "sourceURL": "<https://github.com/org/repo.git>",
+  "date": "<YYYY-MM-DD>"
 }
 ```
 
@@ -96,5 +87,4 @@ Project-specific references cleaned up.
 - [ ] Domain terms universalized
 - [ ] Example paths made generic
 - [ ] Genealogy file created per skill
-- [ ] Changes documented in genealogy
 - [ ] Final scan shows only false positives

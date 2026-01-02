@@ -1,15 +1,13 @@
 {
   "name": "{{skill.name}}",
   "description": "{{skill.description}}",
-  "version": "{{skill.version | default: '1.0.0'}}",
-  "source": {
-    "repository": "{{migration.sourceRepo}}",
-    "path": "{{migration.sourcePath}}{{skill.folder}}/"
-  },
-  "migration": {
-    "date": "{{migration.date}}",
-    "destinationPath": "{{migration.destinationPath}}{{skill.folder}}/",
-    "changes": []
-  },
-  "files": []
+  "sources": [
+    {
+      "date": "YYYY-MM-DD",
+      "sourceURL": "https://github.com/org/repo.git",
+      "destURL": "https://github.com/org/repo.git",
+      "sourceCommitID": "abcdef1234567890abcdef1234567890abcdef12",
+      "destCommitID": "1234567890abcdef1234567890abcdef12345678"           
+    }
+  ]
 }

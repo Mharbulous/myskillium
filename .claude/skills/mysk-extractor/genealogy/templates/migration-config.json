@@ -3,7 +3,7 @@
   "migration": {
     "name": "StoryTree to Myskillium",
     "date": "2026-01-02",
-    "sourceRepo": "StoryTree",
+    "sourceURL": "https://github.com/org/StoryTree.git",
     "sourcePath": "distributables/claude/skills/",
     "destinationPath": ".claude/skills/",
     "genealogyPath": ".claude/skills/myskillium/genealogy/"
