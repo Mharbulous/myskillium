@@ -10,8 +10,8 @@ Embeds all 5 essential myskillium files and can recreate the full skill
 structure from this single script.
 
 Usage:
-    python conidium.py --germinate    # First-time setup
-    python conidium.py                # Hook mode (automatic)
+    python spore.py --germinate    # First-time setup
+    python spore.py                # Hook mode (automatic)
 
 Workflow (hook mode - optimized for minimal intrusion):
 1. 24h fast path -> silent exit if <24h since last check (most common)
@@ -74,9 +74,9 @@ _SOURCE_REPO = "Myskillium"
 
 # ============================================================================
 # CONIDIUM SOURCE METADATA
-# These values identify where this conidium.py was copied FROM.
+# These values identify where this spore.py was copied FROM.
 # During germination, pedigree.json is generated using these as source info.
-# When conidium.py is copied to a new repo and germinated, these values are
+# When spore.py is copied to a new repo and germinated, these values are
 # updated to point to the NEW repo, creating a chain of custody.
 # ============================================================================
 _CONIDIUM_SOURCE = {
@@ -91,7 +91,7 @@ REMOTE_VERSION_URL = f"https://raw.githubusercontent.com/{_SOURCE_OWNER}/{_SOURC
 # Target directory structure
 MYSKILLIUM_DIR = ".claude/skills/myskillium"
 SUBSTRATE_DIR = ".claude/skills/myskillium/substrate"
-SCRIPTS_DIR = ".claude/skills/myskillium/scripts"
+CONIDIOPHORE_DIR = ".claude/skills/myskillium/conidiophore"
 VERSION_FILE = ".claude/skills/myskillium/version.yml"
 SETTINGS_FILE = ".claude/settings.json"
 
@@ -116,13 +116,13 @@ This experiment in non-deterministic evolutionary programming is dedicated to Jo
 1. Install
 
    ```bash
-   python conidium.py --germinate
+   python spore.py --germinate
    ```
 
 2. Uninstall
 
    ```bash
-   python conidium.py --apoptose
+   python spore.py --apoptose
    ```
 
 """,
@@ -132,11 +132,11 @@ This experiment in non-deterministic evolutionary programming is dedicated to Jo
 
 ## Skill Analogy
 
-In the myskillium context, conidiation refers to the process of spreading via the portable installation script (`myskillium-conidium.py`). Just as mycelium use conidia to grow, conidiation is the process of myskillium to spread across repositories.
+In the myskillium context, conidiation refers to the process of spreading via the portable installation script (`spore.py`). Just as mycelium use conidia to grow, conidiation is the process of myskillium to spread across repositories.
 
 ## Purpose
 
-The conidium tool (`myskillium-conidium.py`) is a standalone script that can be copied into any repository to perform skill extraction without requiring the full myskillium skill to be present.
+The conidium tool (`spore.py`) is a standalone script that can be copied into any repository to perform skill extraction without requiring the full myskillium skill to be present.
 
 ## Process
 
@@ -489,7 +489,7 @@ Ensure consistency of core myskillium processes across all repositories:
 
 ## The Conidium Script
 
-`conidium.py` is a portable, self-contained script that serves two purposes:
+`spore.py` is a portable, self-contained script that serves two purposes:
 
 1. **Germination** - Bootstrap myskillium into a new repository
 2. **Homeostasis** - Maintain consistency on each Claude Code session
@@ -512,7 +512,7 @@ The script embeds all essential myskillium files:
 
 ### Relationship to myskillium-spore.py
 
-| Aspect | myskillium-spore.py | conidium.py |
+| Aspect | myskillium-spore.py | spore.py |
 |--------|---------------------|-------------|
 | **Primary role** | Bootstrap planning docs | Bootstrap + maintain myskillium skill |
 | **Embedded content** | 7 planning docs (01-07) | 9 embedded files |
@@ -524,7 +524,7 @@ The script embeds all essential myskillium files:
 
 ```mermaid
 flowchart TD
-    START([python conidium.py]) --> CHECK_FLAG{--germinate<br/>flag?}
+    START([python spore.py]) --> CHECK_FLAG{--germinate<br/>flag?}
 
     %% === GERMINATION PATH ===
     CHECK_FLAG -->|Yes| CHECK_EXISTS{.claude/skills/myskillium<br/>exists?}
@@ -591,10 +591,10 @@ flowchart TD
 
 ## Germination Mode
 
-When a user copies `conidium.py` to their repository and runs:
+When a user copies `spore.py` to their repository and runs:
 
 ```bash
-python .claude/skills/myskillium/scripts/conidium.py --germinate
+python .claude/skills/myskillium/conidiophore/spore.py --germinate
 ```
 
 The script:
@@ -610,8 +610,8 @@ The script:
    │   ├── homeostasis.md
    │   ├── plasmogamy.md
    │   └── pedigree.json
-   └── scripts/
-       └── conidium.py
+   └── conidiophore/
+       └── spore.py
    ```
 
 2. **Installs SessionStart hook** in `.claude/settings.json`:
@@ -624,7 +624,7 @@ The script:
            "hooks": [
              {
                "type": "command",
-               "command": "python .claude/skills/myskillium/scripts/conidium.py"
+               "command": "python .claude/skills/myskillium/conidiophore/spore.py"
              }
            ]
          }
@@ -637,7 +637,7 @@ The script:
 
 ## Homeostasis Mode
 
-After germination, `conidium.py` runs automatically on each Claude Code session start via the installed hook.
+After germination, `spore.py` runs automatically on each Claude Code session start via the installed hook.
 
 ### Phase 1: Fast Path Check (24h cooldown)
 
@@ -707,12 +707,12 @@ Homeostasis is the **guardian** of the other three processes. Without homeostasi
 Homeostasis protects itself (`homeostasis.md`). This creates a bootstrapping consideration:
 
 - The embedded hash of `homeostasis.md` must be updated whenever this file changes
-- Changes to homeostasis require updating `conidium.py` to embed the new canonical content
+- Changes to homeostasis require updating `spore.py` to embed the new canonical content
 - This is intentional: modifying the protection mechanism requires deliberate action in the source template
 
 ## Checklist
 
-- [ ] `conidium.py` embeds all 5 process files as strings
+- [ ] `spore.py` embeds all 5 process files as strings
 - [ ] `--germinate` flag creates full directory structure
 - [ ] `--germinate` installs SessionStart hook in settings.json
 - [ ] Hash calculation matches algorithm in `myskillium-spore.py`
@@ -768,7 +768,7 @@ Edit `.claude/settings.json` and remove the myskillium SessionStart hook entry:
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/skills/myskillium/scripts/conidium.py"
+            "command": "python .claude/skills/myskillium/conidiophore/spore.py"
           }
         ]
       }
@@ -781,16 +781,16 @@ If this is the only SessionStart hook, the entire `SessionStart` array can be re
 
 ### Phase 2: Remove Script
 
-Delete the conidium script:
+Delete the spore script:
 
 ```bash
-rm .claude/skills/myskillium/scripts/conidium.py
+rm .claude/skills/myskillium/conidiophore/spore.py
 ```
 
 Or on Windows:
 
 ```powershell
-Remove-Item .claude\\skills\\myskillium\\scripts\\conidium.py
+Remove-Item .claude\\skills\\myskillium\\conidiophore\\spore.py
 ```
 
 This prevents any possibility of accidental re-execution.
@@ -814,7 +814,7 @@ This removes:
 - `README.md` - Documentation
 - `version.yml` - Version tracking
 - `substrate/` - All process documentation
-- `scripts/` - The scripts directory (now empty)
+- `conidiophore/` - The scripts directory (now empty)
 
 ### Phase 4: Commit (Optional)
 
@@ -840,9 +840,9 @@ git commit -m "chore: remove myskillium skill"
 
 Apoptosis is reversible. To restore myskillium after removal:
 
-1. Obtain a fresh `conidium.py` from upstream or another repository
+1. Obtain a fresh `spore.py` from upstream or another repository
 2. Place it anywhere in your repository
-3. Run `python conidium.py --germinate`
+3. Run `python spore.py --germinate`
 
 The germination process will recreate the full skill structure and reinstall the hook.
 
@@ -863,7 +863,7 @@ Apoptosis is the **inverse of germination**. Where germination creates and insta
 # Complete apoptosis sequence (Unix/Mac)
 # 1. Edit .claude/settings.json - remove the SessionStart hook entry
 # 2. Then run:
-rm .claude/skills/myskillium/scripts/conidium.py
+rm .claude/skills/myskillium/conidiophore/spore.py
 rm -rf .claude/skills/myskillium/
 git add .claude/ && git commit -m "chore: remove myskillium"
 ```
@@ -872,7 +872,7 @@ git add .claude/ && git commit -m "chore: remove myskillium"
 # Complete apoptosis sequence (Windows PowerShell)
 # 1. Edit .claude/settings.json - remove the SessionStart hook entry
 # 2. Then run:
-Remove-Item .claude\\skills\\myskillium\\scripts\\conidium.py
+Remove-Item .claude\\skills\\myskillium\\conidiophore\\spore.py
 Remove-Item -Recurse -Force .claude\\skills\\myskillium\\
 git add .claude/ ; git commit -m "chore: remove myskillium"
 ```
@@ -881,7 +881,7 @@ git add .claude/ ; git commit -m "chore: remove myskillium"
 
 - [ ] User confirms intent to remove myskillium
 - [ ] SessionStart hook entry removed from `.claude/settings.json`
-- [ ] `conidium.py` script deleted
+- [ ] `spore.py` script deleted
 - [ ] `.claude/skills/myskillium/` directory deleted
 - [ ] No orphaned references in settings.json
 - [ ] Changes committed to git (optional)
@@ -1450,7 +1450,7 @@ def generate_pedigree_json(project_root: Path) -> str:
                 "destURL": dest_url,
                 "destPath": MYSKILLIUM_DIR,
                 "destCommitID": dest_commit,
-                "destOperator": "conidium.py --germinate",
+                "destOperator": "spore.py --germinate",
                 "destModel": "N/A (script execution)"
             }
         ]
@@ -1536,9 +1536,9 @@ def germinate(project_root: Path, force: bool = False) -> None:
 
     # Create directory structure
     substrate_dir = project_root / SUBSTRATE_DIR
-    scripts_dir = project_root / SCRIPTS_DIR
+    conidiophore_dir = project_root / CONIDIOPHORE_DIR
     substrate_dir.mkdir(parents=True, exist_ok=True)
-    scripts_dir.mkdir(parents=True, exist_ok=True)
+    conidiophore_dir.mkdir(parents=True, exist_ok=True)
 
     # Write embedded files EXCEPT pedigree.json (which is generated dynamically)
     for name, content in EMBEDDED_DOCS.items():
@@ -1557,10 +1557,10 @@ def germinate(project_root: Path, force: bool = False) -> None:
     dest_url = get_git_remote_url(project_root) or "UNKNOWN"
     dest_commit = get_git_head_commit(project_root) or "PENDING"
 
-    # Copy this script to scripts directory, updating source metadata
+    # Copy this script to conidiophore directory, updating source metadata
     # so future copies from THIS repo have correct lineage
     this_script = Path(__file__).resolve()
-    target_script = project_root / SCRIPTS_DIR / "conidium.py"
+    target_script = project_root / CONIDIOPHORE_DIR / "spore.py"
     if this_script != target_script:
         script_content = this_script.read_text(encoding="utf-8")
         # Update source metadata to point to THIS repo (destination becomes new source)
@@ -1588,7 +1588,7 @@ def germinate(project_root: Path, force: bool = False) -> None:
             print(f"  - {name} (generated with lineage)")
         else:
             print(f"  - {name}")
-    print(f"  - scripts/conidium.py")
+    print(f"  - conidiophore/spore.py")
     print()
     print("Pedigree lineage:")
     print(f"  Source: {_CONIDIUM_SOURCE['url']}")
@@ -1625,7 +1625,7 @@ def update_settings_hook(project_root: Path) -> None:
         settings["hooks"]["SessionStart"] = []
 
     # Check if hook already exists (new format with matcher/hooks structure)
-    hook_command = "python .claude/skills/myskillium/scripts/conidium.py"
+    hook_command = "python .claude/skills/myskillium/conidiophore/spore.py"
 
     def hook_exists_in_entry(entry):
         """Check if our hook command exists in a hook entry."""
@@ -1720,9 +1720,9 @@ def homeostasis(project_root: Path) -> None:
         print("python sync-myskillium.py")
         print("```")
         print()
-        print("Or copy the latest `conidium.py` from Myskillium and run:")
+        print("Or copy the latest `spore.py` from Myskillium and run:")
         print("```")
-        print("python conidium.py --germinate")
+        print("python spore.py --germinate")
         print("```")
         sys.exit(0)
 

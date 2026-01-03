@@ -21,7 +21,7 @@ Ensure consistency of core myskillium processes across all repositories:
 
 ## The Conidium Script
 
-`conidium.py` is a portable, self-contained script that serves two purposes:
+`spore.py` is a portable, self-contained script that serves two purposes:
 
 1. **Germination** - Bootstrap myskillium into a new repository
 2. **Homeostasis** - Maintain consistency on each Claude Code session
@@ -44,7 +44,7 @@ The script embeds all essential myskillium files:
 
 ### Relationship to myskillium-spore.py
 
-| Aspect | myskillium-spore.py | conidium.py |
+| Aspect | myskillium-spore.py | spore.py |
 |--------|---------------------|-------------|
 | **Primary role** | Bootstrap planning docs | Bootstrap + maintain myskillium skill |
 | **Embedded content** | 7 planning docs (01-07) | 9 embedded files |
@@ -56,7 +56,7 @@ The script embeds all essential myskillium files:
 
 ```mermaid
 flowchart TD
-    START([python conidium.py]) --> CHECK_FLAG{--germinate<br/>flag?}
+    START([python spore.py]) --> CHECK_FLAG{--germinate<br/>flag?}
 
     %% === GERMINATION PATH ===
     CHECK_FLAG -->|Yes| CHECK_EXISTS{.claude/skills/myskillium<br/>exists?}
@@ -123,10 +123,10 @@ flowchart TD
 
 ## Germination Mode
 
-When a user copies `conidium.py` to their repository and runs:
+When a user copies `spore.py` to their repository and runs:
 
 ```bash
-python .claude/skills/myskillium/scripts/conidium.py --germinate
+python .claude/skills/myskillium/conidiophore/spore.py --germinate
 ```
 
 The script:
@@ -142,8 +142,8 @@ The script:
    │   ├── homeostasis.md
    │   ├── plasmogamy.md
    │   └── pedigree.json
-   └── scripts/
-       └── conidium.py
+   └── conidiophore/
+       └── spore.py
    ```
 
 2. **Installs SessionStart hook** in `.claude/settings.json`:
@@ -156,7 +156,7 @@ The script:
            "hooks": [
              {
                "type": "command",
-               "command": "python .claude/skills/myskillium/scripts/conidium.py"
+               "command": "python .claude/skills/myskillium/conidiophore/spore.py"
              }
            ]
          }
@@ -169,7 +169,7 @@ The script:
 
 ## Homeostasis Mode
 
-After germination, `conidium.py` runs automatically on each Claude Code session start via the installed hook.
+After germination, `spore.py` runs automatically on each Claude Code session start via the installed hook.
 
 ### Phase 1: Fast Path Check (24h cooldown)
 
@@ -239,12 +239,12 @@ Homeostasis is the **guardian** of the other three processes. Without homeostasi
 Homeostasis protects itself (`homeostasis.md`). This creates a bootstrapping consideration:
 
 - The embedded hash of `homeostasis.md` must be updated whenever this file changes
-- Changes to homeostasis require updating `conidium.py` to embed the new canonical content
+- Changes to homeostasis require updating `spore.py` to embed the new canonical content
 - This is intentional: modifying the protection mechanism requires deliberate action in the source template
 
 ## Checklist
 
-- [ ] `conidium.py` embeds all 5 process files as strings
+- [ ] `spore.py` embeds all 5 process files as strings
 - [ ] `--germinate` flag creates full directory structure
 - [ ] `--germinate` installs SessionStart hook in settings.json
 - [ ] Hash calculation matches algorithm in `myskillium-spore.py`

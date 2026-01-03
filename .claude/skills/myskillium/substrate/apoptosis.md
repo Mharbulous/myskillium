@@ -41,7 +41,7 @@ Edit `.claude/settings.json` and remove the myskillium SessionStart hook entry:
         "hooks": [
           {
             "type": "command",
-            "command": "python .claude/skills/myskillium/scripts/conidium.py"
+            "command": "python .claude/skills/myskillium/conidiophore/spore.py"
           }
         ]
       }
@@ -54,16 +54,16 @@ If this is the only SessionStart hook, the entire `SessionStart` array can be re
 
 ### Phase 2: Remove Script
 
-Delete the conidium script:
+Delete the spore script:
 
 ```bash
-rm .claude/skills/myskillium/scripts/conidium.py
+rm .claude/skills/myskillium/conidiophore/spore.py
 ```
 
 Or on Windows:
 
 ```powershell
-Remove-Item .claude\skills\myskillium\scripts\conidium.py
+Remove-Item .claude\skills\myskillium\conidiophore\spore.py
 ```
 
 This prevents any possibility of accidental re-execution.
@@ -87,7 +87,7 @@ This removes:
 - `README.md` - Documentation
 - `version.yml` - Version tracking
 - `substrate/` - All process documentation
-- `scripts/` - The scripts directory (now empty)
+- `conidiophore/` - The scripts directory (now empty)
 
 ### Phase 4: Commit (Optional)
 
@@ -113,9 +113,9 @@ git commit -m "chore: remove myskillium skill"
 
 Apoptosis is reversible. To restore myskillium after removal:
 
-1. Obtain a fresh `conidium.py` from upstream or another repository
+1. Obtain a fresh `spore.py` from upstream or another repository
 2. Place it anywhere in your repository
-3. Run `python conidium.py --germinate`
+3. Run `python spore.py --germinate`
 
 The germination process will recreate the full skill structure and reinstall the hook.
 
@@ -136,7 +136,7 @@ Apoptosis is the **inverse of germination**. Where germination creates and insta
 # Complete apoptosis sequence (Unix/Mac)
 # 1. Edit .claude/settings.json - remove the SessionStart hook entry
 # 2. Then run:
-rm .claude/skills/myskillium/scripts/conidium.py
+rm .claude/skills/myskillium/conidiophore/spore.py
 rm -rf .claude/skills/myskillium/
 git add .claude/ && git commit -m "chore: remove myskillium"
 ```
@@ -145,7 +145,7 @@ git add .claude/ && git commit -m "chore: remove myskillium"
 # Complete apoptosis sequence (Windows PowerShell)
 # 1. Edit .claude/settings.json - remove the SessionStart hook entry
 # 2. Then run:
-Remove-Item .claude\skills\myskillium\scripts\conidium.py
+Remove-Item .claude\skills\myskillium\conidiophore\spore.py
 Remove-Item -Recurse -Force .claude\skills\myskillium\
 git add .claude/ ; git commit -m "chore: remove myskillium"
 ```
@@ -154,7 +154,7 @@ git add .claude/ ; git commit -m "chore: remove myskillium"
 
 - [ ] User confirms intent to remove myskillium
 - [ ] SessionStart hook entry removed from `.claude/settings.json`
-- [ ] `conidium.py` script deleted
+- [ ] `spore.py` script deleted
 - [ ] `.claude/skills/myskillium/` directory deleted
 - [ ] No orphaned references in settings.json
 - [ ] Changes committed to git (optional)

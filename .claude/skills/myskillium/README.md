@@ -13,12 +13,12 @@ This experiment in non-deterministic evolutionary programming is dedicated to Jo
 1. Install
 
    ```bash
-   python conidium.py --germinate
+   python spore.py --germinate
    ```
 
 2. Uninstall
 
    ```bash
-   python conidium.py --apoptose
+   python spore.py --apoptose
    ```
 

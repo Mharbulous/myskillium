@@ -2,11 +2,11 @@
 
 ## Skill Analogy
 
-In the myskillium context, conidiation refers to the process of spreading via the portable installation script (`myskillium-conidium.py`). Just as mycelium use conidia to grow, conidiation is the process of myskillium to spread across repositories.
+In the myskillium context, conidiation refers to the process of spreading via the portable installation script (`spore.py`). Just as mycelium use conidia to grow, conidiation is the process of myskillium to spread across repositories.
 
 ## Purpose
 
-The conidium tool (`myskillium-conidium.py`) is a standalone script that can be copied into any repository to perform skill extraction without requiring the full myskillium skill to be present.
+The conidium tool (`spore.py`) is a standalone script that can be copied into any repository to perform skill extraction without requiring the full myskillium skill to be present.
 
 ## Process
 
