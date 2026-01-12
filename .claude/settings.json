@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "brahm-shared-tools": {
+      "source": {
+        "source": "github",
+        "repo": "Mharbulous/claude-shared-tools"
+      }
+    }
+  }
+}
