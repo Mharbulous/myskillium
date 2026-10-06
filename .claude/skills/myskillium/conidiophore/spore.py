@@ -111,19 +111,13 @@ Examples of use:
    "Claude, find a better version of this skill:  ...X.."
    "Claude, create a hybrid skill that combines the best elements of these two skills:  ...Y and Z..."
 
-This experiment in non-deterministic evolutionary programming is dedicated to John Horton Conway, Edward Lorenz, Stephen Wolfram, and Andrej Karpathy.
+This experiment in non-deterministic evolutionary programming is inspired by John Horton Conway, Edward Lorenz, Stephen Wolfram, and Andrej Karpathy.
 
-1. Install
+### Install
+> python spore.py --germinate
 
-   ```bash
-   python spore.py --germinate
-   ```
-
-2. Uninstall
-
-   ```bash
-   python spore.py --apoptose
-   ```
+### Uninstall
+> python spore.py --apoptose
 
 """,
 
@@ -727,24 +721,11 @@ Homeostasis protects itself (`homeostasis.md`). This creates a bootstrapping con
     "substrate/apoptosis.md": """\
 # Apoptosis
 
-## Definition
-
-In the myskillium context, apoptosis refers to **the controlled, orderly removal of myskillium from a repository**. Just as biological apoptosis is programmed cell death that cleanly removes cells without damaging surrounding tissue, skill apoptosis cleanly removes myskillium without corrupting the host repository.
-
-Key parallels:
-- Programmed = deliberate user decision, not accidental deletion
-- Orderly = follows specific sequence to avoid orphaned artifacts
-- Clean removal = no residual hooks, settings, or broken references
-- Non-destructive = host repository continues functioning normally
+Apoptosis provides a controlled removal of Myskillium from a repository, analagous to how biological apoptosis triggers a programmed cell death that cleanly removes a cell without damaging surrounding tissue.
 
 ## Purpose
 
-Provide a safe, complete method to remove myskillium from a repository:
-
-1. **Disable monitoring** - Remove the SessionStart hook first to prevent resurrection
-2. **Remove artifacts** - Delete all myskillium files and directories
-3. **Preserve integrity** - Leave no orphaned references in settings
-4. **Document removal** - Optional: record removal in git history
+Provide a safe, complete method to remove the Myskillium skill, hooks and settings from a repository without damaging any other skills, hooks or settings in the host repository.
 
 ## Process
 
