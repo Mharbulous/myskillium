@@ -6,5 +6,23 @@
         "repo": "Mharbulous/claude-shared-tools"
       }
     }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/no-regression-suite.py"
+            ],
+            "timeout": 10,
+            "statusMessage": "No regression suite guard"
+          }
+        ]
+      }
+    ]
   }
 }
