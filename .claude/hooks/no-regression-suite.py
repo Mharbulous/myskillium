@@ -32,8 +32,16 @@ REASON = (
 )
 
 
+QUOTED_RE = re.compile(r"\"[^\"]*\"|'[^']*'")
+MASK = str.maketrans({c: chr(0xE000 + i) for i, c in enumerate(";&|()")})
+UNMASK = str.maketrans({chr(0xE000 + i): c for i, c in enumerate(";&|()")})
+
+
 def segments(command):
-    lexer = shlex.shlex(HEREDOC_RE.sub(" ", command), posix=False, punctuation_chars=";&|()")
+    # The lexer (posix=False, kept for Windows backslash paths) sees a quote only at the start of
+    # a word, so --flag="a|b" would split on its |. Operators inside quotes are masked first.
+    text = QUOTED_RE.sub(lambda m: m.group(0).translate(MASK), HEREDOC_RE.sub(" ", command))
+    lexer = shlex.shlex(text, posix=False, punctuation_chars=";&|()")
     lexer.whitespace_split = True
     seg = []
     for tok in lexer:
@@ -42,7 +50,7 @@ def segments(command):
                 yield seg
             seg = []
         else:
-            seg.append(tok.strip("'\""))
+            seg.append(tok.translate(UNMASK).strip("'\""))
     if seg:
         yield seg
 
@@ -144,7 +152,7 @@ def refusal(command, cwd):
 
 
 def main():
-    payload = json.load(sys.stdin)
+    payload = json.loads(sys.stdin.buffer.read().decode("utf-8"))
     command = (payload.get("tool_input") or {}).get("command")
     if payload.get("tool_name") not in ("Bash", "PowerShell") or not isinstance(command, str):
         return 0
